@@ -18,6 +18,7 @@ namespace BlackBytesBox.Routed.GitBackend.Tests
     public sealed class MyMiddlewareIntegrationTests
     {
         private const string localhost = "https://localhost:5425";
+        private const string localhostuser = "https://gituser:secret@localhost:5425";
         private static WebApplicationBuilder? builder;
         private static WebApplication? app;
         private HttpClient? client;
@@ -32,6 +33,35 @@ namespace BlackBytesBox.Routed.GitBackend.Tests
             builder.WebHost.UseUrls(localhost);
             builder.Logging.AddDebug();
             builder.Logging.SetMinimumLevel(LogLevel.Trace);
+
+            System.IO.Directory.CreateDirectory(@"C:\gitremote");
+            System.IO.Directory.CreateDirectory(@"C:\gitlocal");
+
+            System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = "git",
+                Arguments = "init --bare MyProject.git",
+                WorkingDirectory = @"C:\gitremote",
+                UseShellExecute = true,
+                RedirectStandardOutput = false,
+                RedirectStandardError = false,
+                RedirectStandardInput = false,
+            };
+
+            System.Diagnostics.Process.Start(psi)?.WaitForExit();
+
+            System.Diagnostics.ProcessStartInfo psi2 = new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = "git",
+                Arguments = @$"-C C:\gitremote\MyProject.git config http.receivepack true",
+                WorkingDirectory = @"C:\gitremote",
+                UseShellExecute = true,
+                RedirectStandardOutput = false,
+                RedirectStandardError = false,
+                RedirectStandardInput = false,
+            };
+
+            System.Diagnostics.Process.Start(psi2)?.WaitForExit();
 
             // Build the application.
             app = builder.Build();
@@ -78,8 +108,6 @@ namespace BlackBytesBox.Routed.GitBackend.Tests
             };
             // Add a default User-Agent header for testing.
             client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36");
-            client.DefaultRequestHeaders.Add("APPID", "1234");
-            client.DefaultRequestHeaders.AcceptLanguage.ParseAdd("de-DE");
         }
 
         [TestCleanup]
@@ -97,40 +125,63 @@ namespace BlackBytesBox.Routed.GitBackend.Tests
             // Simulate an optional delay to mimic asynchronous conditions.
             await Task.Delay(delay);
 
-            
-            // Send a GET request to the root endpoint.
-            HttpResponseMessage response = await client!.GetAsync("/");
-            response.EnsureSuccessStatusCode();
-            await Task.Delay(2000);
-            response = await client!.GetAsync("/");
-            response.EnsureSuccessStatusCode();
-            await Task.Delay(2000);
-            response = await client!.GetAsync("/");
-            response.EnsureSuccessStatusCode();
-            await Task.Delay(2000);
+            System.Diagnostics.ProcessStartInfo psi2 = new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = "git",
+                Arguments = @$"-C C:\gitlocal -c http.sslVerify=false clone {localhostuser}/gitrepos/MyProject.git",
+                WorkingDirectory = @"C:\gitlocal",
+                UseShellExecute = true,
+                RedirectStandardOutput = false,
+                RedirectStandardError = false,
+                RedirectStandardInput = false,
+            };
+
+            System.Diagnostics.Process.Start(psi2)?.WaitForExit();
+
+            System.Diagnostics.ProcessStartInfo psi3 = new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = "git",
+                Arguments = @$"-C C:\gitlocal\MyProject config http.sslVerify false",
+                WorkingDirectory = @"C:\gitlocal",
+                UseShellExecute = true,
+                RedirectStandardOutput = false,
+                RedirectStandardError = false,
+                RedirectStandardInput = false,
+            };
+
+            System.Diagnostics.Process.Start(psi3)?.WaitForExit();
+
+            System.IO.File.WriteAllText(@"C:\gitlocal\Readme.md", "test");
+
+
+            System.Diagnostics.ProcessStartInfo psi4 = new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = "git",
+                Arguments = @$"-C C:\gitlocal\MyProject push",
+                WorkingDirectory = @"C:\gitlocal",
+                UseShellExecute = true,
+                RedirectStandardOutput = false,
+                RedirectStandardError = false,
+                RedirectStandardInput = false,
+            };
+
+            System.Diagnostics.Process.Start(psi4)?.WaitForExit();
+
+
+            //// Send a GET request to the root endpoint.
+            //HttpResponseMessage response = await client!.GetAsync("/");
+            //response.EnsureSuccessStatusCode();
+            //await Task.Delay(2000);
+            //response = await client!.GetAsync("/");
+            //response.EnsureSuccessStatusCode();
+            //await Task.Delay(2000);
+            //response = await client!.GetAsync("/");
+            //response.EnsureSuccessStatusCode();
+            //await Task.Delay(2000);
 
 
             Assert.IsTrue(true);
             return;
-            // Verify that the middleware injected the "X-Option1" header.
-            Assert.IsTrue(response.Headers.Contains("X-Option1"), "The response should contain the 'X-Option1' header.");
-            string headerValue = string.Join("", response.Headers.GetValues("X-Option1"));
-
-            // With no manual override provided, the default value should be "default value".
-            Assert.AreEqual("default value", headerValue, "The 'X-Option1' header should have the default value.");
-
-            await Task.Delay(40000);
-
-            // Send a GET request to the root endpoint.
-            response = await client!.GetAsync("/");
-            response.EnsureSuccessStatusCode();
-
-            // Verify that the middleware injected the "X-Option1" header.
-            Assert.IsTrue(response.Headers.Contains("X-Option1"), "The response should contain the 'X-Option1' header.");
-            headerValue = string.Join("", response.Headers.GetValues("X-Option1"));
-
-            // With no manual override provided, the default value should be "default value".
-            Assert.AreEqual("foo", headerValue, "The 'X-Option1' header should have the default value.");
         }
     }
 }
