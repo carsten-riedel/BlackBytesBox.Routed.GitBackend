@@ -73,6 +73,17 @@ The `GitBackendMiddleware` class:
 - This middleware uses `git-http-backend`, not a custom Git implementation.
 - Repository path traversal is blocked and validated.
 - This component assumes you understand Git internals and ASP.NET Core middleware.
+- ✅ If you're using **self-signed HTTPS certificates**, Git clients can still work by disabling SSL verification:
+
+```bash
+git -c http.sslVerify=false clone https://localhost:5001/gitrepos/MyProject.git
+```
+
+Or configure the cloned repository to permanently skip SSL validation (for dev/testing only):
+
+```bash
+git -C C:\gitlocal\MyProject config http.sslVerify false
+```
 
 ---
 
