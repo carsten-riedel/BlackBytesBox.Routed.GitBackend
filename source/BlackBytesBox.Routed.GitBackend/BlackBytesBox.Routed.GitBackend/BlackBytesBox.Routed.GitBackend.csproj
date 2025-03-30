@@ -52,7 +52,7 @@
 		<Authors>Carsten Riedel</Authors>
 		<Owners>Carsten Riedel</Owners>
 		<PackageId>$(AssemblyName)</PackageId>
-		<PackageTags>aspnetcore;middleware;security;filtering;blacklist;whitelist;request-validation;ip-filtering;url-filtering;dotnet;BlackBytesBox</PackageTags>
+		<PackageTags>aspnetcore;middleware;git;git-http-backend;auth;bare-repos;BlackBytesBox</PackageTags>
 		<PackageProjectUrl>https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
