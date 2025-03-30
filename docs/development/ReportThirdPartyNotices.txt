@@ -1,6 +1,0 @@
-============================================
-          THIRD-PARTY LICENSE NOTICES       
-============================================
-
-This project includes third-party libraries under open-source licenses.
-
