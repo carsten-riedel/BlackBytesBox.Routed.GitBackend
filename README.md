@@ -2,8 +2,6 @@
 
 This project provides ASP.NET Core middleware to expose bare Git repositories over HTTP using Git's `git-http-backend` mechanism.
 
-**Package Tags:** `aspnetcore`, `middleware`, `git`, `git-http-backend`, `auth`, `bare-repos`, `BlackBytesBox`
-
 ## ⚠️ Experimental
 This is an experimental setup and **not recommended for production** environments without proper hardening and security review.
 
@@ -81,7 +79,11 @@ The `GitBackendMiddleware` class:
 git -c http.sslVerify=false clone https://localhost:5001/gitrepos/MyProject.git
 ```
 
-This allows development and testing with HTTPS even without a trusted CA.
+Or configure the cloned repository to permanently skip SSL validation (for dev/testing only):
+
+```bash
+git -C C:\gitlocal\MyProject config http.sslVerify false
+```
 
 ---
 
@@ -98,3 +100,4 @@ Enjoy hacking Git over HTTP!
 ---
 
 MIT License. Provided as-is with no warranty.
+
