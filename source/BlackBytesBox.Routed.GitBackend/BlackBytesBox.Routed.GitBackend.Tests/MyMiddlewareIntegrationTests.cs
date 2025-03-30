@@ -3,9 +3,9 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-using BlackBytesBox.Routed.GitBackend.Extensions.IApplicationBuilderExtensions;
-using BlackBytesBox.Routed.GitBackend.Extensions.IServiceCollectionExtensions;
+
 using BlackBytesBox.Routed.GitBackend.Middleware;
+using BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +17,7 @@ namespace BlackBytesBox.Routed.GitBackend.Tests
     [TestClass]
     public sealed class MyMiddlewareIntegrationTests
     {
+        private const string localhost = "https://localhost:5425";
         private static WebApplicationBuilder? builder;
         private static WebApplication? app;
         private HttpClient? client;
@@ -28,67 +29,20 @@ namespace BlackBytesBox.Routed.GitBackend.Tests
             builder = WebApplication.CreateBuilder();
 
             // Set a fixed URL for the host.
-            builder.WebHost.UseUrls("https://localhost:5425");
-
+            builder.WebHost.UseUrls(localhost);
             builder.Logging.AddDebug();
             builder.Logging.SetMinimumLevel(LogLevel.Trace);
-
-
-            // Optionally, add a separate JSON configuration file (for example, myMiddlewareConfig.json)
-            // Uncomment the following line if you want to load a separate config file:
-            // builder.Configuration.AddJsonFile("myMiddlewareConfig.json", optional: true, reloadOnChange: true);
-
-            // Register middleware configuration. This method will internally resolve IConfiguration.
-            // If a "MyMiddleware" section exists, it is used.
-            // Manual configuration provided in the lambda takes precedence over configuration file values.
-
-            //builder.Services.AddMyMiddlewareConfiguration(options =>
-            //{
-            //    options.Option1 = "Manually overridden value";
-            //    // Option2 will remain as defined in the configuration file or default if not provided.
-            //});
-
-            //builder.Services.AddMyMiddlewareConfiguration(builder.Configuration);
-
-            builder.Services.AddRemoteIPFilteringMiddleware(builder.Configuration);
-            builder.Services.AddHttpProtocolFilteringMiddleware(builder.Configuration);
-            builder.Services.AddHostNameFilteringMiddleware(builder.Configuration);
-            builder.Services.AddUserAgentFilteringMiddleware(builder.Configuration);
-            builder.Services.AddRequestUrlFilteringMiddleware(builder.Configuration);
-            builder.Services.AddDnsHostNameFilteringMiddleware(builder.Configuration);
-            builder.Services.AddHeaderPresentsFilteringMiddleware(builder.Configuration);
-            builder.Services.AddAcceptLanguageFilteringMiddleware(builder.Configuration);
-            builder.Services.AddSegmentFilteringMiddleware(builder.Configuration);
-            builder.Services.AddPathDeepFilteringMiddleware(builder.Configuration);
-            builder.Services.AddHeaderValuesRequiredFilteringMiddleware(builder.Configuration);
-            builder.Services.AddFailurePointsFilteringMiddleware(builder.Configuration);
-
 
             // Build the application.
             app = builder.Build();
 
-            //app.UseMyMiddleware();
-
-            // Option 2: Use DI options and apply an additional manual configuration.
-            // For example, override Option1 while still getting refresh behavior.
-
-            app.UseHttpProtocolFilteringMiddleware();
-            app.UseHostNameFilteringMiddleware();
-            app.UseUserAgentFilteringMiddleware();
-            app.UseRequestUrlFilteringMiddleware();
-            app.UseDnsHostNameFilteringMiddleware();
-            app.UseHeaderPresentsFilteringMiddleware();
-            app.UseAcceptLanguageFilteringMiddleware();
-            app.UseSegmentFilteringMiddleware(); 
-            app.UsePathDeepFilteringMiddleware();
-            app.UseHeaderValuesRequiredFilteringMiddleware();
-            app.UseFailurePointsFilteringMiddleware();
-
-
-            // Map a simple GET endpoint for testing.
-            app.MapGet("/", async context =>
+            app.UseGitBackend(@"C:\gitremote", @"C:\Program Files\Git\mingw64\libexec\git-core\git-http-backend.exe", "/gitrepos", (repoName, username, password) =>
             {
-                await context.Response.WriteAsync("Hello, world!");
+                // Implement repository-specific auth logic.
+                // For example, allow access if username equals repoName (or any custom rule).
+                return string.Equals(username, "gituser", StringComparison.OrdinalIgnoreCase) &&
+                       string.Equals(password, "secret", StringComparison.Ordinal) &&
+                       repoName.Equals("MyProject.git", StringComparison.OrdinalIgnoreCase);
             });
 
             // Start the application.
@@ -119,7 +73,7 @@ namespace BlackBytesBox.Routed.GitBackend.Tests
             // Create a new, independent HttpClient for each test.
             client = new HttpClient(handler)
             {
-                BaseAddress = new Uri("https://localhost:5425"),
+                BaseAddress = new Uri(localhost),
                 DefaultRequestVersion = HttpVersion.Version11, // Force HTTP/1.0
             };
             // Add a default User-Agent header for testing.
