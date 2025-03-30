@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -37,36 +38,17 @@ namespace BlackBytesBox.Routed.GitBackend.Tests
             System.IO.Directory.CreateDirectory(@"C:\gitremote");
             System.IO.Directory.CreateDirectory(@"C:\gitlocal");
 
-            System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo
-            {
-                FileName = "git",
-                Arguments = "init --bare MyProject.git",
-                WorkingDirectory = @"C:\gitremote",
-                UseShellExecute = true,
-                RedirectStandardOutput = false,
-                RedirectStandardError = false,
-                RedirectStandardInput = false,
-            };
+            var find = LocateExecutable("git");
+            string oneup = Path.GetFullPath(find.Value.Directory + @"\..\mingw64\libexec\git-core\git-http-backend.exe");
 
-            System.Diagnostics.Process.Start(psi)?.WaitForExit();
+            var result = ExecuteProcess(@"git", @$"-C ""C:\gitremote"" init --bare MyProject.git", "");
+            var result2 = ExecuteProcess(@"git", @$"-C ""C:\gitremote\MyProject.git"" config http.receivepack true", "");
 
-            System.Diagnostics.ProcessStartInfo psi2 = new System.Diagnostics.ProcessStartInfo
-            {
-                FileName = "git",
-                Arguments = @$"-C C:\gitremote\MyProject.git config http.receivepack true",
-                WorkingDirectory = @"C:\gitremote",
-                UseShellExecute = true,
-                RedirectStandardOutput = false,
-                RedirectStandardError = false,
-                RedirectStandardInput = false,
-            };
-
-            System.Diagnostics.Process.Start(psi2)?.WaitForExit();
 
             // Build the application.
             app = builder.Build();
 
-            app.UseGitBackend(@"C:\gitremote", @"C:\Program Files\Git\mingw64\libexec\git-core\git-http-backend.exe", "/gitrepos", (repoName, username, password) =>
+            app.UseGitBackend(@"C:\gitremote", oneup, "/gitrepos", (repoName, username, password) =>
             {
                 // Implement repository-specific auth logic.
                 // For example, allow access if username equals repoName (or any custom rule).
@@ -125,47 +107,14 @@ namespace BlackBytesBox.Routed.GitBackend.Tests
             // Simulate an optional delay to mimic asynchronous conditions.
             await Task.Delay(delay);
 
-            System.Diagnostics.ProcessStartInfo psi2 = new System.Diagnostics.ProcessStartInfo
-            {
-                FileName = "git",
-                Arguments = @$"-C C:\gitlocal -c http.sslVerify=false clone {localhostuser}/gitrepos/MyProject.git",
-                WorkingDirectory = @"C:\gitlocal",
-                UseShellExecute = true,
-                RedirectStandardOutput = false,
-                RedirectStandardError = false,
-                RedirectStandardInput = false,
-            };
+            var result = ExecuteProcess(@"git", @$"-C C:\gitlocal -c http.sslVerify=false clone {localhostuser}/gitrepos/MyProject.git", "");
+            var result1 = ExecuteProcess(@"git", @$"-C C:\gitlocal\MyProject config http.sslVerify false", "");
 
-            System.Diagnostics.Process.Start(psi2)?.WaitForExit();
+            System.IO.File.WriteAllText(@"C:\gitlocal\MyProject\Readme.md", "test");
 
-            System.Diagnostics.ProcessStartInfo psi3 = new System.Diagnostics.ProcessStartInfo
-            {
-                FileName = "git",
-                Arguments = @$"-C C:\gitlocal\MyProject config http.sslVerify false",
-                WorkingDirectory = @"C:\gitlocal",
-                UseShellExecute = true,
-                RedirectStandardOutput = false,
-                RedirectStandardError = false,
-                RedirectStandardInput = false,
-            };
-
-            System.Diagnostics.Process.Start(psi3)?.WaitForExit();
-
-            System.IO.File.WriteAllText(@"C:\gitlocal\Readme.md", "test");
-
-
-            System.Diagnostics.ProcessStartInfo psi4 = new System.Diagnostics.ProcessStartInfo
-            {
-                FileName = "git",
-                Arguments = @$"-C C:\gitlocal\MyProject push",
-                WorkingDirectory = @"C:\gitlocal",
-                UseShellExecute = true,
-                RedirectStandardOutput = false,
-                RedirectStandardError = false,
-                RedirectStandardInput = false,
-            };
-
-            System.Diagnostics.Process.Start(psi4)?.WaitForExit();
+            var result2 = ExecuteProcess(@"git", @$"-C C:\gitlocal\MyProject add .", "");
+            var result3 = ExecuteProcess(@"git", @$"-C C:\gitlocal\MyProject commit -m ""Initial commit""", "");
+            var result4 = ExecuteProcess(@"git", @$"-C C:\gitlocal\MyProject push", "");
 
 
             //// Send a GET request to the root endpoint.
@@ -183,5 +132,124 @@ namespace BlackBytesBox.Routed.GitBackend.Tests
             Assert.IsTrue(true);
             return;
         }
+
+        /// <summary>
+        /// Executes a process with the specified filename, arguments, and working directory.
+        /// </summary>
+        /// <remarks>
+        /// This method runs the specified process without shell execution, captures both standard output and error streams,
+        /// and returns these outputs along with the process exit code.
+        /// </remarks>
+        /// <param name="fileName">The executable to run.</param>
+        /// <param name="arguments">The command-line arguments for the process.</param>
+        /// <param name="workingDirectory">The directory in which to execute the process.</param>
+        /// <returns>A tuple containing the standard output, standard error, and exit code.</returns>
+        /// <example>
+        /// var result = ExecuteProcess("git", "-C \"C:\\gitlocal\" clone http://localhostuser/gitrepos/MyProject.git", @"C:\gitlocal");
+        /// Console.WriteLine($"Output: {result.Output}");
+        /// Console.WriteLine($"Error: {result.Error}");
+        /// Console.WriteLine($"Exit Code: {result.ExitCode}");
+        /// </example>
+        public static (string Output, string Error, int ExitCode) ExecuteProcess(string fileName, string arguments, string workingDirectory)
+        {
+            // Configure the process start information.
+            System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = fileName,
+                Arguments = arguments,
+                WorkingDirectory = workingDirectory,
+                UseShellExecute = false,                // Required for redirecting streams.
+                RedirectStandardOutput = true,          // Enable capturing standard output.
+                RedirectStandardError = true,           // Enable capturing standard error.
+                RedirectStandardInput = false
+            };
+
+            using (var process = new System.Diagnostics.Process())
+            {
+                process.StartInfo = psi;
+                process.Start();
+
+                // Capture the output streams.
+                string output = process.StandardOutput.ReadToEnd();
+                string error = process.StandardError.ReadToEnd();
+
+                process.WaitForExit();
+                int exitCode = process.ExitCode;
+
+                // Return all captured output in a tuple.
+                return (output, error, exitCode);
+            }
+        }
+
+        /// <summary>
+        /// Locates an executable in the system PATH.
+        /// </summary>
+        /// <remarks>
+        /// On Windows, if the provided filename lacks an extension, ".exe" is appended for the search.
+        /// This method returns a tuple with the directory where the executable was found, the filename (with extension),
+        /// and the fully qualified path to the executable.
+        /// </remarks>
+        /// <param name="fileName">The name of the executable file (e.g., "git" or "git.exe").</param>
+        /// <returns>
+        /// A tuple containing:
+        ///   - Directory: The directory in which the executable was found.
+        ///   - FileName: The filename with the proper extension.
+        ///   - FullPath: The fully qualified path to the executable.
+        /// Returns null if the executable is not found.
+        /// </returns>
+        /// <example>
+        /// var result = LocateExecutable("git");
+        /// if (result != null)
+        /// {
+        ///     Console.WriteLine($"Directory: {result.Value.Directory}");
+        ///     Console.WriteLine($"FileName: {result.Value.FileName}");
+        ///     Console.WriteLine($"FullPath: {result.Value.FullPath}");
+        /// }
+        /// else
+        /// {
+        ///     Console.WriteLine("Executable not found in the system PATH.");
+        /// }
+        /// </example>
+        public static (string Directory, string FileName, string FullPath)? LocateExecutable(string fileName)
+        {
+            // On Windows, if the file name does not have an extension, append ".exe" for the search.
+            string searchFileName = fileName;
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT && !Path.HasExtension(fileName))
+            {
+                searchFileName += ".exe";
+            }
+
+            // Retrieve the PATH environment variable.
+            string? pathEnv = Environment.GetEnvironmentVariable("PATH");
+            if (string.IsNullOrEmpty(pathEnv))
+            {
+                return null;
+            }
+
+            // Split the PATH into individual directories.
+            var paths = pathEnv.Split(Path.PathSeparator);
+            foreach (var path in paths)
+            {
+                try
+                {
+                    string candidate = Path.Combine(path, searchFileName);
+                    if (File.Exists(candidate))
+                    {
+                        // Get the fully qualified path.
+                        string fullPath = Path.GetFullPath(candidate);
+                        return (path, searchFileName, fullPath);
+                    }
+                }
+                catch
+                {
+                    // Ignore exceptions and continue with the next directory.
+                }
+            }
+
+            // Executable not found in any of the PATH directories.
+            return null;
+        }
+
+
     }
 }
