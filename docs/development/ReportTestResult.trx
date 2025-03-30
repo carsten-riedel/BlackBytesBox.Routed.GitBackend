@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="5b021fd5-def4-4b16-ba3b-8bd88fc5f8fe" name="@fv-az1787-927 2025-03-30 07:39:29" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2025-03-30T07:39:29.9015702+00:00" queuing="2025-03-30T07:39:29.9015703+00:00" start="2025-03-30T07:39:28.9967701+00:00" finish="2025-03-30T07:39:29.9090347+00:00" />
+  <TestSettings name="default" id="80ec4ab3-50f8-44e6-826c-5ff3eb915a67">
+    <Deployment runDeploymentRoot="_fv-az1787-927_2025-03-30_07_39_29" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="cc9b3088-cea3-4103-9389-07e045a03da7" testId="91890cfa-7f64-77bd-5aed-c436b1887e3a" testName="TestMyMiddlewareIntegration (100)" computerName="fv-az1787-927" duration="00:00:00.1110761" startTime="2025-03-30T07:39:29.4338698+00:00" endTime="2025-03-30T07:39:29.7752691+00:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cc9b3088-cea3-4103-9389-07e045a03da7">
+      <Output>
+        <StdOut>dbug: Microsoft.Extensions.Hosting.Internal.Host[1]
+      Hosting starting
+dbug: Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware[7]
+      Middleware configuration started with options: {AllowedHosts = *, AllowEmptyHosts = True, IncludeFailureMessage = True}
+dbug: Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware[0]
+      Wildcard detected, all requests with hosts will be allowed.
+warn: Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer[8]
+      The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: https://localhost:5425
+dbug: Microsoft.AspNetCore.Hosting.Diagnostics[13]
+      Loaded hosting startup assembly testhost
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /home/runner/work/BlackBytesBox.Routed.GitBackend/BlackBytesBox.Routed.GitBackend/source/BlackBytesBox.Routed.GitBackend/BlackBytesBox.Routed.GitBackend.Tests/bin/Release/net9.0
+dbug: Microsoft.Extensions.Hosting.Internal.Host[2]
+      Hosting started
+dbug: Microsoft.Extensions.Hosting.Internal.Host[3]
+      Hosting stopping
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
+dbug: Microsoft.Extensions.Hosting.Internal.Host[4]
+      Hosting stopped</StdOut>
+      </Output>
+    </UnitTestResult>
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="TestMyMiddlewareIntegration (100)" storage="/home/runner/work/blackbytesbox.routed.gitbackend/blackbytesbox.routed.gitbackend/source/blackbytesbox.routed.gitbackend/blackbytesbox.routed.gitbackend.tests/bin/release/net9.0/blackbytesbox.routed.gitbackend.tests.dll" id="91890cfa-7f64-77bd-5aed-c436b1887e3a">
+      <Execution id="cc9b3088-cea3-4103-9389-07e045a03da7" />
+      <TestMethod codeBase="/home/runner/work/BlackBytesBox.Routed.GitBackend/BlackBytesBox.Routed.GitBackend/source/BlackBytesBox.Routed.GitBackend/BlackBytesBox.Routed.GitBackend.Tests/bin/Release/net9.0/BlackBytesBox.Routed.GitBackend.Tests.dll" adapterTypeName="executor://mstestadapter/v2" className="BlackBytesBox.Routed.GitBackend.Tests.MyMiddlewareIntegrationTests" name="TestMyMiddlewareIntegration" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="91890cfa-7f64-77bd-5aed-c436b1887e3a" executionId="cc9b3088-cea3-4103-9389-07e045a03da7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>Initialized empty Git repository in /home/runner/work/BlackBytesBox.Routed.GitBackend/BlackBytesBox.Routed.GitBackend/source/BlackBytesBox.Routed.GitBackend/BlackBytesBox.Routed.GitBackend.Tests/bin/Release/net9.0/C:\gitremote/MyProject.git/
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch &lt;name&gt;
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m &lt;name&gt;
+fatal: cannot change to 'C:\gitremote\MyProject.git': No such file or directory
+fatal: cannot change to 'C:\gitlocal': No such file or directory
+fatal: cannot change to 'C:\gitlocal\MyProject': No such file or directory
+fatal: cannot change to 'C:\gitlocal\MyProject': No such file or directory
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>
