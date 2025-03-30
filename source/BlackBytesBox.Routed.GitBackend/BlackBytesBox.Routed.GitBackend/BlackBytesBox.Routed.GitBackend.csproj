@@ -70,8 +70,5 @@
 	<ItemGroup Condition="'$(Stage)' == 'pack'">
 		<None Include="$(MSBuildProjectDirectory)\AddPackageFiles\**\*" Exclude="$(MSBuildProjectDirectory)\AddPackageFiles\ReleaseNotes.txt" Pack="true" PackagePath="" />
 	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Extensions\" />
-	</ItemGroup>
 
 </Project>

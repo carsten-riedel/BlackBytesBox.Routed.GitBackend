@@ -4,13 +4,10 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-
-using BlackBytesBox.Routed.GitBackend.Middleware;
 using BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
 namespace BlackBytesBox.Routed.GitBackend.Tests
@@ -48,7 +45,7 @@ namespace BlackBytesBox.Routed.GitBackend.Tests
             // Build the application.
             app = builder.Build();
 
-            app.UseGitBackend(@"C:\gitremote", oneup, "/gitrepos", (repoName, username, password) =>
+            app.UseGitBackend2(@"C:\gitremote", oneup, "/gitrepos", (repoName, username, password) =>
             {
                 // Implement repository-specific auth logic.
                 // For example, allow access if username equals repoName (or any custom rule).
@@ -107,6 +104,10 @@ namespace BlackBytesBox.Routed.GitBackend.Tests
             // Simulate an optional delay to mimic asynchronous conditions.
             await Task.Delay(delay);
 
+            //HttpResponseMessage response = await client!.GetAsync("/gitrepos/MyProject.git/info/refs?service=git-receive-pack");
+            //response.EnsureSuccessStatusCode();
+
+        
             var result = ExecuteProcess(@"git", @$"-C C:\gitlocal -c http.sslVerify=false clone {localhostuser}/gitrepos/MyProject.git", "");
             var result1 = ExecuteProcess(@"git", @$"-C C:\gitlocal\MyProject config http.sslVerify false", "");
 
@@ -115,18 +116,6 @@ namespace BlackBytesBox.Routed.GitBackend.Tests
             var result2 = ExecuteProcess(@"git", @$"-C C:\gitlocal\MyProject add .", "");
             var result3 = ExecuteProcess(@"git", @$"-C C:\gitlocal\MyProject commit -m ""Initial commit""", "");
             var result4 = ExecuteProcess(@"git", @$"-C C:\gitlocal\MyProject push", "");
-
-
-            //// Send a GET request to the root endpoint.
-            //HttpResponseMessage response = await client!.GetAsync("/");
-            //response.EnsureSuccessStatusCode();
-            //await Task.Delay(2000);
-            //response = await client!.GetAsync("/");
-            //response.EnsureSuccessStatusCode();
-            //await Task.Delay(2000);
-            //response = await client!.GetAsync("/");
-            //response.EnsureSuccessStatusCode();
-            //await Task.Delay(2000);
 
 
             Assert.IsTrue(true);
