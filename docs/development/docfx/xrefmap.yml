@@ -1,6 +1,34 @@
 ### YamlMime:XRefMap
 sorted: true
 references:
+- uid: BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions
+  name: BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions
+  href: api/BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions.html
+  commentId: N:BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions
+  fullName: BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions
+  nameWithType: BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions
+- uid: BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions.EnumerableExtensions
+  name: EnumerableExtensions
+  href: api/BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions.EnumerableExtensions.html
+  commentId: T:BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions.EnumerableExtensions
+  fullName: BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions.EnumerableExtensions
+  nameWithType: EnumerableExtensions
+- uid: BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions.EnumerableExtensions.TakeUntilIncluding*
+  name: TakeUntilIncluding
+  href: api/BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions.EnumerableExtensions.html#BlackBytesBox_Routed_GitBackend_Extensions_EnumerableExtensions_EnumerableExtensions_TakeUntilIncluding_
+  commentId: Overload:BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions.EnumerableExtensions.TakeUntilIncluding
+  isSpec: "True"
+  fullName: BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions.EnumerableExtensions.TakeUntilIncluding
+  nameWithType: EnumerableExtensions.TakeUntilIncluding
+- uid: BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions.EnumerableExtensions.TakeUntilIncluding``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})
+  name: TakeUntilIncluding<T>(IEnumerable<T>, Func<T, bool>)
+  href: api/BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions.EnumerableExtensions.html#BlackBytesBox_Routed_GitBackend_Extensions_EnumerableExtensions_EnumerableExtensions_TakeUntilIncluding__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Boolean__
+  commentId: M:BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions.EnumerableExtensions.TakeUntilIncluding``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})
+  name.vb: TakeUntilIncluding(Of T)(IEnumerable(Of T), Func(Of T, Boolean))
+  fullName: BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions.EnumerableExtensions.TakeUntilIncluding<T>(System.Collections.Generic.IEnumerable<T>, System.Func<T, bool>)
+  fullName.vb: BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions.EnumerableExtensions.TakeUntilIncluding(Of T)(System.Collections.Generic.IEnumerable(Of T), System.Func(Of T, Boolean))
+  nameWithType: EnumerableExtensions.TakeUntilIncluding<T>(IEnumerable<T>, Func<T, bool>)
+  nameWithType.vb: EnumerableExtensions.TakeUntilIncluding(Of T)(IEnumerable(Of T), Func(Of T, Boolean))
 - uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
   name: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
   href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.html
@@ -13,15 +41,15 @@ references:
   commentId: T:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware
   fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware
   nameWithType: GitBackendMiddleware
-- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,System.String,System.String,System.String,System.Func{System.String,System.String,System.String,System.Boolean})
-  name: GitBackendMiddleware(RequestDelegate, string, string, string, Func<string, string, string, bool>)
-  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware__ctor_Microsoft_AspNetCore_Http_RequestDelegate_System_String_System_String_System_String_System_Func_System_String_System_String_System_String_System_Boolean__
-  commentId: M:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,System.String,System.String,System.String,System.Func{System.String,System.String,System.String,System.Boolean})
-  name.vb: New(RequestDelegate, String, String, String, Func(Of String, String, String, Boolean))
-  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware.GitBackendMiddleware(Microsoft.AspNetCore.Http.RequestDelegate, string, string, string, System.Func<string, string, string, bool>)
-  fullName.vb: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware.New(Microsoft.AspNetCore.Http.RequestDelegate, String, String, String, System.Func(Of String, String, String, Boolean))
-  nameWithType: GitBackendMiddleware.GitBackendMiddleware(RequestDelegate, string, string, string, Func<string, string, string, bool>)
-  nameWithType.vb: GitBackendMiddleware.New(RequestDelegate, String, String, String, Func(Of String, String, String, Boolean))
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger{BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware},System.String,System.String,System.String,System.Func{System.String,System.String,System.String,System.Boolean})
+  name: GitBackendMiddleware(RequestDelegate, ILogger<GitBackendMiddleware>, string, string, string, Func<string, string, string, bool>)
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware__ctor_Microsoft_AspNetCore_Http_RequestDelegate_Microsoft_Extensions_Logging_ILogger_BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware__System_String_System_String_System_String_System_Func_System_String_System_String_System_String_System_Boolean__
+  commentId: M:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger{BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware},System.String,System.String,System.String,System.Func{System.String,System.String,System.String,System.Boolean})
+  name.vb: New(RequestDelegate, ILogger(Of GitBackendMiddleware), String, String, String, Func(Of String, String, String, Boolean))
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware.GitBackendMiddleware(Microsoft.AspNetCore.Http.RequestDelegate, Microsoft.Extensions.Logging.ILogger<BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware>, string, string, string, System.Func<string, string, string, bool>)
+  fullName.vb: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware.New(Microsoft.AspNetCore.Http.RequestDelegate, Microsoft.Extensions.Logging.ILogger(Of BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware), String, String, String, System.Func(Of String, String, String, Boolean))
+  nameWithType: GitBackendMiddleware.GitBackendMiddleware(RequestDelegate, ILogger<GitBackendMiddleware>, string, string, string, Func<string, string, string, bool>)
+  nameWithType.vb: GitBackendMiddleware.New(RequestDelegate, ILogger(Of GitBackendMiddleware), String, String, String, Func(Of String, String, String, Boolean))
 - uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware.#ctor*
   name: GitBackendMiddleware
   href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware__ctor_
@@ -45,6 +73,44 @@ references:
   isSpec: "True"
   fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware.InvokeAsync
   nameWithType: GitBackendMiddleware.InvokeAsync
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2
+  name: GitBackendMiddleware2
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.html
+  commentId: T:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2
+  nameWithType: GitBackendMiddleware2
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger{BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2},System.String,System.String,System.String,System.Func{System.String,System.String,System.String,System.Boolean})
+  name: GitBackendMiddleware2(RequestDelegate, ILogger<GitBackendMiddleware2>, string, string, string, Func<string, string, string, bool>)
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2__ctor_Microsoft_AspNetCore_Http_RequestDelegate_Microsoft_Extensions_Logging_ILogger_BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2__System_String_System_String_System_String_System_Func_System_String_System_String_System_String_System_Boolean__
+  commentId: M:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger{BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2},System.String,System.String,System.String,System.Func{System.String,System.String,System.String,System.Boolean})
+  name.vb: New(RequestDelegate, ILogger(Of GitBackendMiddleware2), String, String, String, Func(Of String, String, String, Boolean))
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.GitBackendMiddleware2(Microsoft.AspNetCore.Http.RequestDelegate, Microsoft.Extensions.Logging.ILogger<BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2>, string, string, string, System.Func<string, string, string, bool>)
+  fullName.vb: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.New(Microsoft.AspNetCore.Http.RequestDelegate, Microsoft.Extensions.Logging.ILogger(Of BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2), String, String, String, System.Func(Of String, String, String, Boolean))
+  nameWithType: GitBackendMiddleware2.GitBackendMiddleware2(RequestDelegate, ILogger<GitBackendMiddleware2>, string, string, string, Func<string, string, string, bool>)
+  nameWithType.vb: GitBackendMiddleware2.New(RequestDelegate, ILogger(Of GitBackendMiddleware2), String, String, String, Func(Of String, String, String, Boolean))
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.#ctor*
+  name: GitBackendMiddleware2
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2__ctor_
+  commentId: Overload:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.GitBackendMiddleware2
+  fullName.vb: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.New
+  nameWithType: GitBackendMiddleware2.GitBackendMiddleware2
+  nameWithType.vb: GitBackendMiddleware2.New
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)
+  name: InvokeAsync(HttpContext)
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2_InvokeAsync_Microsoft_AspNetCore_Http_HttpContext_
+  commentId: M:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)
+  nameWithType: GitBackendMiddleware2.InvokeAsync(HttpContext)
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.InvokeAsync*
+  name: InvokeAsync
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2_InvokeAsync_
+  commentId: Overload:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.InvokeAsync
+  isSpec: "True"
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.InvokeAsync
+  nameWithType: GitBackendMiddleware2.InvokeAsync
 - uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions
   name: GitBackendMiddlewareExtensions
   href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.html
@@ -67,6 +133,50 @@ references:
   isSpec: "True"
   fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.UseGitBackend
   nameWithType: GitBackendMiddlewareExtensions.UseGitBackend
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.UseGitBackend2(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String,System.String,System.String,System.Func{System.String,System.String,System.String,System.Boolean})
+  name: UseGitBackend2(IApplicationBuilder, string, string, string, Func<string, string, string, bool>)
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddlewareExtensions_UseGitBackend2_Microsoft_AspNetCore_Builder_IApplicationBuilder_System_String_System_String_System_String_System_Func_System_String_System_String_System_String_System_Boolean__
+  commentId: M:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.UseGitBackend2(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String,System.String,System.String,System.Func{System.String,System.String,System.String,System.Boolean})
+  name.vb: UseGitBackend2(IApplicationBuilder, String, String, String, Func(Of String, String, String, Boolean))
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.UseGitBackend2(Microsoft.AspNetCore.Builder.IApplicationBuilder, string, string, string, System.Func<string, string, string, bool>)
+  fullName.vb: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.UseGitBackend2(Microsoft.AspNetCore.Builder.IApplicationBuilder, String, String, String, System.Func(Of String, String, String, Boolean))
+  nameWithType: GitBackendMiddlewareExtensions.UseGitBackend2(IApplicationBuilder, string, string, string, Func<string, string, string, bool>)
+  nameWithType.vb: GitBackendMiddlewareExtensions.UseGitBackend2(IApplicationBuilder, String, String, String, Func(Of String, String, String, Boolean))
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.UseGitBackend2*
+  name: UseGitBackend2
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddlewareExtensions_UseGitBackend2_
+  commentId: Overload:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.UseGitBackend2
+  isSpec: "True"
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.UseGitBackend2
+  nameWithType: GitBackendMiddlewareExtensions.UseGitBackend2
+- uid: BlackBytesBox.Routed.GitBackend.Utility
+  name: BlackBytesBox.Routed.GitBackend.Utility
+  href: api/BlackBytesBox.Routed.GitBackend.Utility.html
+  commentId: N:BlackBytesBox.Routed.GitBackend.Utility
+  fullName: BlackBytesBox.Routed.GitBackend.Utility
+  nameWithType: BlackBytesBox.Routed.GitBackend.Utility
+- uid: BlackBytesBox.Routed.GitBackend.Utility.HttpContextUtility
+  name: HttpContextUtility
+  href: api/BlackBytesBox.Routed.GitBackend.Utility.HttpContextUtility.html
+  commentId: T:BlackBytesBox.Routed.GitBackend.Utility.HttpContextUtility
+  fullName: BlackBytesBox.Routed.GitBackend.Utility.HttpContextUtility
+  nameWithType: HttpContextUtility
+- uid: BlackBytesBox.Routed.GitBackend.Utility.HttpContextUtility.GetUriFromRequestDisplayUrl(Microsoft.AspNetCore.Http.HttpContext,Microsoft.Extensions.Logging.ILogger)
+  name: GetUriFromRequestDisplayUrl(HttpContext, ILogger?)
+  href: api/BlackBytesBox.Routed.GitBackend.Utility.HttpContextUtility.html#BlackBytesBox_Routed_GitBackend_Utility_HttpContextUtility_GetUriFromRequestDisplayUrl_Microsoft_AspNetCore_Http_HttpContext_Microsoft_Extensions_Logging_ILogger_
+  commentId: M:BlackBytesBox.Routed.GitBackend.Utility.HttpContextUtility.GetUriFromRequestDisplayUrl(Microsoft.AspNetCore.Http.HttpContext,Microsoft.Extensions.Logging.ILogger)
+  name.vb: GetUriFromRequestDisplayUrl(HttpContext, ILogger)
+  fullName: BlackBytesBox.Routed.GitBackend.Utility.HttpContextUtility.GetUriFromRequestDisplayUrl(Microsoft.AspNetCore.Http.HttpContext, Microsoft.Extensions.Logging.ILogger?)
+  fullName.vb: BlackBytesBox.Routed.GitBackend.Utility.HttpContextUtility.GetUriFromRequestDisplayUrl(Microsoft.AspNetCore.Http.HttpContext, Microsoft.Extensions.Logging.ILogger)
+  nameWithType: HttpContextUtility.GetUriFromRequestDisplayUrl(HttpContext, ILogger?)
+  nameWithType.vb: HttpContextUtility.GetUriFromRequestDisplayUrl(HttpContext, ILogger)
+- uid: BlackBytesBox.Routed.GitBackend.Utility.HttpContextUtility.GetUriFromRequestDisplayUrl*
+  name: GetUriFromRequestDisplayUrl
+  href: api/BlackBytesBox.Routed.GitBackend.Utility.HttpContextUtility.html#BlackBytesBox_Routed_GitBackend_Utility_HttpContextUtility_GetUriFromRequestDisplayUrl_
+  commentId: Overload:BlackBytesBox.Routed.GitBackend.Utility.HttpContextUtility.GetUriFromRequestDisplayUrl
+  isSpec: "True"
+  fullName: BlackBytesBox.Routed.GitBackend.Utility.HttpContextUtility.GetUriFromRequestDisplayUrl
+  nameWithType: HttpContextUtility.GetUriFromRequestDisplayUrl
 - uid: BlackBytesBox.Routed.Middleware
   name: BlackBytesBox.Routed.Middleware
   href: api/BlackBytesBox.Routed.Middleware.html
