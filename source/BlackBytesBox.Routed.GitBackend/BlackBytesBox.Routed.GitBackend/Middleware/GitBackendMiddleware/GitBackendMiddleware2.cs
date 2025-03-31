@@ -13,6 +13,7 @@ using System.Net;
 using BlackBytesBox.Routed.GitBackend.Utility;
 using System.Runtime.Intrinsics.X86;
 using BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions;
+using Microsoft.Extensions.Options;
 
 namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
 {
@@ -26,10 +27,11 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<GitBackendMiddleware2> _logger;
+        private readonly IOptionsMonitor<RepositorySettings> _optionsMonitor;
         private readonly string _repositoryRoot;
         private readonly string _gitHttpBackendPath;
         private readonly string _basePath;
-        private readonly Func<string, string, string, bool> _validateCredentials;
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GitBackendMiddleware"/> class.
@@ -41,14 +43,15 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
         /// <param name="validateCredentials">
         /// A delegate that receives the repository name, username, and password, and returns true if the credentials are valid for that repo.
         /// </param>
-        public GitBackendMiddleware2(RequestDelegate next, ILogger<GitBackendMiddleware2> logger, string repositoryRoot, string gitHttpBackendPath, string basePath, Func<string, string, string, bool> validateCredentials)
+        public GitBackendMiddleware2(RequestDelegate next, ILogger<GitBackendMiddleware2> logger, IOptionsMonitor<RepositorySettings> optionsMonitor, string repositoryRoot, string gitHttpBackendPath, string basePath)
         {
             _next = next;
             _logger = logger;
             _repositoryRoot = repositoryRoot;
             _gitHttpBackendPath = gitHttpBackendPath;
             _basePath = basePath?.TrimEnd('/') ?? "";
-            _validateCredentials = validateCredentials;
+            _optionsMonitor = optionsMonitor;
+
         }
 
         /// <summary>
@@ -59,7 +62,6 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
         /// <returns>A task representing asynchronous execution.</returns>
         public async Task InvokeAsync(HttpContext context)
         {
-
             var uri = HttpContextUtility.GetUriFromRequestDisplayUrl(context, _logger);
             if (uri is null)
             {
@@ -67,7 +69,7 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
                 return;
             }
 
-            //No url encoding
+            //No url encoding allowed
             if (uri.Segments.Any(e => WebUtility.UrlDecode(e) != e))
             {
                 await _next(context);
@@ -118,66 +120,29 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
                 return;
             }
 
-            var gitRepoPath = normalizedUriSegments.TakeWhile(e => !e.EndsWith(".git", StringComparison.OrdinalIgnoreCase)).ToList();
-            var remainingRepoPath = string.Join("", normalizedUriSegments.SkipWhile(e => !e.EndsWith(".git", StringComparison.OrdinalIgnoreCase)).ToList().Select(e=> "/"+e).ToList());
+            RepositorySettings settings = _optionsMonitor.CurrentValue;
+
+            List<string> gitRepoPathSegements = normalizedUriSegments.TakeWhile(e => !e.EndsWith(".git", StringComparison.OrdinalIgnoreCase)).ToList();
+            string gitRepoName = normalizedUriSegments.Where(s => s.EndsWith(".git", StringComparison.OrdinalIgnoreCase)).ToList().First();
+
+            string gitRepoRemainingPath = string.Join("", normalizedUriSegments.SkipWhile(e => !e.EndsWith(".git", StringComparison.OrdinalIgnoreCase)).ToList().Select(e => "/" + e).ToList());
             
-            var gitRepoName = normalizedUriSegments.Where(s => s.EndsWith(".git", StringComparison.OrdinalIgnoreCase)).ToList().First();
-            var repoDepth = gitRepoPath.Count;
+            int repoDepth = gitRepoPathSegements.Count;
+            string gitDepthRepoPath = System.IO.Path.Combine(new[] { _repositoryRoot, repoDepth.ToString() }.Concat(gitRepoPathSegements).ToArray());
+            string xxx = string.Join("/", gitRepoPathSegements) + @$"/{gitRepoName}";
+            System.IO.Directory.CreateDirectory(gitDepthRepoPath);
 
-            List<string> gitDepthRoot = new List<string>();
-            gitDepthRoot.Add(_repositoryRoot);
-            gitDepthRoot.Add(repoDepth.ToString());
-            gitDepthRoot.AddRange(gitRepoPath);
-
-            var gitDepthRootString = System.IO.Path.Combine(gitDepthRoot.ToArray());
-
-            System.IO.Directory.CreateDirectory(gitDepthRootString);
- 
-
-            // --- Authentication Check ---
-            if (!context.Request.Headers.ContainsKey("Authorization"))
+            var basicAuthCheckResult = BasicAuthCheck(context);
+            if (basicAuthCheckResult.IsInvalid)
             {
-                await WriteUnauthorizedResponseAsync(context, "Unauthorized: Missing Authorization header.");
+                await WriteUnauthorizedResponseAsync(context, basicAuthCheckResult.IsInvalidText, basicAuthCheckResult.IncludeRealmHeader);
                 return;
             }
 
-            var authHeader = context.Request.Headers.Authorization.FirstOrDefault();
-            if (authHeader.StartsWith("Basic ", StringComparison.OrdinalIgnoreCase))
-            {
-                var encodedCredentials = authHeader.Substring("Basic ".Length).Trim();
-                string decodedCredentials;
-                try
-                {
-                    var credentialBytes = Convert.FromBase64String(encodedCredentials);
-                    decodedCredentials = Encoding.UTF8.GetString(credentialBytes);
-                }
-                catch
-                {
-                    await WriteUnauthorizedResponseAsync(context, "Unauthorized: Invalid Base64 encoding.");
-                    return;
-                }
-                var parts = decodedCredentials.Split(new char[] { ':' }, 2);
-                if (parts.Length != 2)
-                {
-                    await WriteUnauthorizedResponseAsync(context,"Unauthorized: Invalid credentials format.");
-                    return;
-                }
-                var username = parts[0];
-                var password = parts[1];
 
-                // Use the injected delegate to validate credentials for the given repository.
-                if (!_validateCredentials(gitRepoName, username, password))
-                {
-                    await WriteUnauthorizedResponseAsync(context, "Unauthorized: Invalid username or password for this repository.");
-                    return;
-                }
-            }
-            else
-            {
-                await WriteUnauthorizedResponseAsync(context, "Unauthorized: Unsupported authorization method.",false);
-                return;
-            }
-            // --- End Authentication Check ---
+
+            basicAuthCheckResult.Username = basicAuthCheckResult.Username.Trim();
+            basicAuthCheckResult.Password = basicAuthCheckResult.Password.Trim();
 
             // Configure and execute git-http-backend.exe.
             var psi = new ProcessStartInfo
@@ -191,7 +156,7 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
                 RedirectStandardError = true,
             };
 
-            psi.Environment["GIT_PROJECT_ROOT"] = gitDepthRootString;
+            psi.Environment["GIT_PROJECT_ROOT"] = gitDepthRepoPath;
             psi.Environment["GIT_HTTP_EXPORT_ALL"] = "1";
             psi.Environment["REQUEST_METHOD"] = context.Request.Method;
             psi.Environment["QUERY_STRING"] = context.Request.QueryString.HasValue
@@ -199,7 +164,7 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
                 : "";
             psi.Environment["CONTENT_TYPE"] = context.Request.ContentType ?? "";
             psi.Environment["CONTENT_LENGTH"] = context.Request.ContentLength?.ToString() ?? "0";
-            psi.Environment["PATH_INFO"] = remainingRepoPath.ToString();
+            psi.Environment["PATH_INFO"] = gitRepoRemainingPath.ToString();
             psi.Environment["REMOTE_ADDR"] = context.Connection.RemoteIpAddress?.ToString() ?? "";
             psi.Environment["SERVER_PROTOCOL"] = context.Request.Protocol;
             psi.Environment["SERVER_SOFTWARE"] = "Kestrel";
@@ -262,10 +227,56 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
             }
         }
 
-        private bool IsRequestPathValid(HttpContext context, out PathString remainingPath)
+        public class BasicAuthResult
         {
-            // Implementation hidden: returns true if the request path starts with _basePath.
-            return context.Request.Path.StartsWithSegments(_basePath, out remainingPath);
+            public string Username { get; set; } = string.Empty;
+            public string Password { get; set; } = string.Empty;
+            public bool IsInvalid { get; set; } = true;
+            public string IsInvalidText { get; set; } = string.Empty;
+            public bool IncludeRealmHeader { get; set; } = true;
+        }
+
+        public BasicAuthResult BasicAuthCheck(HttpContext context)
+        {
+            if (!context.Request.Headers.ContainsKey("Authorization"))
+            {
+                return new BasicAuthResult { IsInvalidText = "Unauthorized: Missing Authorization header." };
+            }
+
+            var authHeader = context.Request.Headers.Authorization.FirstOrDefault();
+
+            if (authHeader is null)
+            {
+                return new BasicAuthResult { IsInvalidText = "Unauthorized: Unsupported authorization method.", IncludeRealmHeader = false };
+            }
+
+            if (authHeader.StartsWith("Basic ", StringComparison.OrdinalIgnoreCase))
+            {
+                var encodedCredentials = authHeader.Substring("Basic ".Length).Trim();
+                string decodedCredentials;
+                try
+                {
+                    var credentialBytes = Convert.FromBase64String(encodedCredentials);
+                    decodedCredentials = Encoding.UTF8.GetString(credentialBytes);
+                }
+                catch
+                {
+                    return new BasicAuthResult { IsInvalidText = "Unauthorized: Invalid Base64 encoding." };
+                }
+                var parts = decodedCredentials.Split(new char[] { ':' }, 2);
+                if (parts.Length != 2)
+                {
+                    return new BasicAuthResult { IsInvalidText = "Unauthorized: Invalid credentials format." };
+                }
+                var username = parts[0];
+                var password = parts[1];
+
+                return new BasicAuthResult { Username = parts[0], Password = parts[1], IsInvalidText = string.Empty, IsInvalid = false, IncludeRealmHeader = false };
+            }
+            else
+            {
+                return new BasicAuthResult { IsInvalidText = "Unauthorized: Unsupported authorization method.", IncludeRealmHeader = false };
+            }
         }
 
         /// <summary>Writes a 401 Unauthorized response.</summary>
@@ -282,45 +293,5 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
             }
             await context.Response.WriteAsync(responseMessage);
         }
-
-
-
-        /// <summary>
-        /// Extracts and normalizes the repository name from the remaining URL path.
-        /// This method forces normalization (resolving any ".." segments) and ensures that
-        /// the first segment ends with ".git".
-        /// </summary>
-        /// <param name="remainingPath">The URL path remaining after the base path.</param>
-        /// <param name="repoName">The extracted repository name, if valid.</param>
-        /// <returns>True if extraction is successful; otherwise, false.</returns>
-        private bool TryExtractRepositoryName(PathString remainingPath, out string repoName)
-        {
-            repoName = string.Empty;
-            // Remove leading '/' and combine with a dummy base to force normalization.
-            string rawRelativePath = remainingPath.Value.TrimStart('/');
-            const string dummyBase = "dummy";
-            string combinedPath = Path.Combine(dummyBase, rawRelativePath);
-            string normalizedFullPath = Path.GetFullPath(combinedPath);
-            string dummyFullPath = Path.GetFullPath(dummyBase) + Path.DirectorySeparatorChar;
-            string normalizedRelativePath = normalizedFullPath.StartsWith(dummyFullPath, StringComparison.OrdinalIgnoreCase)
-                ? normalizedFullPath.Substring(dummyFullPath.Length)
-                : normalizedFullPath;
-
-            // Split the normalized path.
-            var segments = normalizedRelativePath.Split(new[] { Path.DirectorySeparatorChar }, StringSplitOptions.RemoveEmptyEntries);
-            if (segments.Length == 0)
-            {
-                return false;
-            }
-            // The first segment should be the repository name and must end with ".git".
-            if (!segments[0].EndsWith(".git", StringComparison.OrdinalIgnoreCase))
-            {
-                return false;
-            }
-            repoName = segments[0];
-            return true;
-        }
     }
-
-
 }

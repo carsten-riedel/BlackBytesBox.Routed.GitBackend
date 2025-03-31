@@ -41,18 +41,12 @@ namespace BlackBytesBox.Routed.GitBackend.Tests
             var result = ExecuteProcess(@"git", @$"-C ""C:\gitremote"" init --bare MyProject.git", "");
             var result2 = ExecuteProcess(@"git", @$"-C ""C:\gitremote\MyProject.git"" config http.receivepack true", "");
 
+            builder.Services.AddRepositorySettings(builder.Configuration);
 
             // Build the application.
             app = builder.Build();
 
-            app.UseGitBackend2(@"C:\gitremote", oneup, "/gitrepos", (repoName, username, password) =>
-            {
-                // Implement repository-specific auth logic.
-                // For example, allow access if username equals repoName (or any custom rule).
-                return string.Equals(username, "gituser", StringComparison.OrdinalIgnoreCase) &&
-                       string.Equals(password, "secret", StringComparison.Ordinal) &&
-                       repoName.Equals("MyProject.git", StringComparison.OrdinalIgnoreCase);
-            });
+            app.UseGitBackend2(@"C:\gitremote", oneup, "/gitrepos");
 
             // Start the application.
             await app.StartAsync();
@@ -104,8 +98,8 @@ namespace BlackBytesBox.Routed.GitBackend.Tests
             // Simulate an optional delay to mimic asynchronous conditions.
             await Task.Delay(delay);
 
-            //HttpResponseMessage response = await client!.GetAsync("/gitrepos/MyProject.git/info/refs?service=git-receive-pack");
-            //response.EnsureSuccessStatusCode();
+            HttpResponseMessage response = await client!.GetAsync("/gitrepos/MyProject.git/info/refs?service=git-receive-pack");
+            response.EnsureSuccessStatusCode();
 
         
             var result = ExecuteProcess(@"git", @$"-C C:\gitlocal -c http.sslVerify=false clone {localhostuser}/gitrepos/MyProject.git", "");
