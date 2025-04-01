@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Class GitBackendMiddleware2
+      <title>Class BackendSettings
  | BlackBytesBox.Routed.GitBackend </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Class GitBackendMiddleware2
+      <meta name="title" content="Class BackendSettings
  | BlackBytesBox.Routed.GitBackend ">
     
       <link rel="shortcut icon" href="../favicon.ico">
@@ -109,8 +109,8 @@
                           <li class="">
                             <a href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.Account.html" title="Account" class="">Account</a>
                           </li>
-                          <li class="">
-                            <a href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.html" title="BackendSettings" class="">BackendSettings</a>
+                          <li class="active">
+                            <a href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.html" title="BackendSettings" class="active">BackendSettings</a>
                           </li>
                           <li class="">
                             <a href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BasicAuth.html" title="BasicAuth" class="">BasicAuth</a>
@@ -118,8 +118,8 @@
                           <li class="">
                             <a href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware.html" title="GitBackendMiddleware" class="">GitBackendMiddleware</a>
                           </li>
-                          <li class="active">
-                            <a href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.html" title="GitBackendMiddleware2" class="active">GitBackendMiddleware2</a>
+                          <li class="">
+                            <a href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.html" title="GitBackendMiddleware2" class="">GitBackendMiddleware2</a>
                           </li>
                           <li class="">
                             <a href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.BasicAuthResult.html" title="GitBackendMiddleware2.BasicAuthResult" class="">GitBackendMiddleware2.BasicAuthResult</a>
@@ -160,22 +160,19 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2">
+            <article class="content wrap" id="_content" data-uid="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings">
 
 
 
-  <h1 id="BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2" data-uid="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2" class="text-break">Class GitBackendMiddleware2
+  <h1 id="BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings" data-uid="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings" class="text-break">Class BackendSettings
 </h1>
-  <div class="markdown level0 summary"><p>Middleware that integrates Git’s smart HTTP backend by executing git-http-backend.exe.
-It sets up required CGI environment variables and streams request/response data to enable
-basic Git clone, fetch, and push operations. It supports Basic authentication by calling
-a delegate for repository-specific credential validation.</p>
+  <div class="markdown level0 summary"><p>Represents the repository configuration settings.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">GitBackendMiddleware2</span></div>
+    <div class="level1"><span class="xref">BackendSettings</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -203,159 +200,101 @@ a delegate for repository-specific credential validation.</p>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="BlackBytesBox.html">BlackBytesBox</a>.<a class="xref" href="BlackBytesBox.Routed.html">Routed</a>.<a class="xref" href="BlackBytesBox.Routed.GitBackend.html">GitBackend</a>.<a class="xref" href="BlackBytesBox.Routed.GitBackend.Middleware.html">Middleware</a>.<a class="xref" href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.html">GitBackendMiddleware</a></h6>
   <h6><strong>Assembly</strong>: BlackBytesBox.Routed.GitBackend.dll</h6>
-  <h5 id="BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2_syntax">Syntax</h5>
+  <h5 id="BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class GitBackendMiddleware2</code></pre>
+    <pre><code class="lang-csharp hljs">public class BackendSettings</code></pre>
   </div>
-  <h3 id="constructors">Constructors
+  <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/new/feature/setup/apiSpec/new?filename=BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2__ctor_Microsoft_AspNetCore_Http_RequestDelegate_Microsoft_Extensions_Logging_ILogger_BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2__BlackBytesBox_Routed_GitBackend_DynamicSettingsService_BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings__System_String_.md&amp;value=---%0Auid%3A%20BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.%23ctor(Microsoft.AspNetCore.Http.RequestDelegate%2CMicrosoft.Extensions.Logging.ILogger%7BBlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2%7D%2CBlackBytesBox.Routed.GitBackend.DynamicSettingsService%7BBlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings%7D%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/new/feature/setup/apiSpec/new?filename=BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings_AccessRights.md&amp;value=---%0Auid%3A%20BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.AccessRights%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/blob/feature/setup/source/BlackBytesBox.Routed.GitBackend/BlackBytesBox.Routed.GitBackend/Middleware/GitBackendMiddleware/GitBackendMiddleware2.cs/#L43">View Source</a>
+    <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/blob/feature/setup/source/BlackBytesBox.Routed.GitBackend/BlackBytesBox.Routed.GitBackend/Middleware/GitBackendMiddleware/BackendSettings.cs/#L20">View Source</a>
   </span>
-  <a id="BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2__ctor_" data-uid="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.#ctor*"></a>
-  <h4 id="BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2__ctor_Microsoft_AspNetCore_Http_RequestDelegate_Microsoft_Extensions_Logging_ILogger_BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2__BlackBytesBox_Routed_GitBackend_DynamicSettingsService_BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings__System_String_" data-uid="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger{BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2},BlackBytesBox.Routed.GitBackend.DynamicSettingsService{BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings},System.String)">GitBackendMiddleware2(RequestDelegate, ILogger&lt;GitBackendMiddleware2&gt;, DynamicSettingsService&lt;BackendSettings&gt;, string)</h4>
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware.html">GitBackendMiddleware</a> class.</p>
+  <a id="BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings_AccessRights_" data-uid="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.AccessRights*"></a>
+  <h4 id="BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings_AccessRights" data-uid="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.AccessRights">AccessRights</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the list of repository mappings.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GitBackendMiddleware2(RequestDelegate next, ILogger&lt;GitBackendMiddleware2&gt; logger, DynamicSettingsService&lt;BackendSettings&gt; dynamicBackendSettingsService, string gitHttpBackendPath)</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;AccessRight&gt; AccessRights { get; set; }</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.requestdelegate">RequestDelegate</a></td>
-        <td><span class="parametername">next</span></td>
-        <td><p>The next middleware in the pipeline.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1">ILogger</a>&lt;<a class="xref" href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.html">GitBackendMiddleware2</a>&gt;</td>
-        <td><span class="parametername">logger</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessRight.html">AccessRight</a>&gt;</td>
         <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="BlackBytesBox.Routed.GitBackend.DynamicSettingsService-1.html">DynamicSettingsService</a>&lt;<a class="xref" href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.html">BackendSettings</a>&gt;</td>
-        <td><span class="parametername">dynamicBackendSettingsService</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">gitHttpBackendPath</span></td>
-        <td><p>The full path to git-http-backend.exe.</p>
-</td>
       </tr>
     </tbody>
   </table>
-  <h3 id="methods">Methods
-</h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/new/feature/setup/apiSpec/new?filename=BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2_BasicAuthCheck_Microsoft_AspNetCore_Http_HttpContext_.md&amp;value=---%0Auid%3A%20BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.BasicAuthCheck(Microsoft.AspNetCore.Http.HttpContext)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/new/feature/setup/apiSpec/new?filename=BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings_Accounts.md&amp;value=---%0Auid%3A%20BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.Accounts%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/blob/feature/setup/source/BlackBytesBox.Routed.GitBackend/BlackBytesBox.Routed.GitBackend/Middleware/GitBackendMiddleware/GitBackendMiddleware2.cs/#L257">View Source</a>
+    <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/blob/feature/setup/source/BlackBytesBox.Routed.GitBackend/BlackBytesBox.Routed.GitBackend/Middleware/GitBackendMiddleware/BackendSettings.cs/#L15">View Source</a>
   </span>
-  <a id="BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2_BasicAuthCheck_" data-uid="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.BasicAuthCheck*"></a>
-  <h4 id="BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2_BasicAuthCheck_Microsoft_AspNetCore_Http_HttpContext_" data-uid="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.BasicAuthCheck(Microsoft.AspNetCore.Http.HttpContext)">BasicAuthCheck(HttpContext)</h4>
+  <a id="BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings_Accounts_" data-uid="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.Accounts*"></a>
+  <h4 id="BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings_Accounts" data-uid="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.Accounts">Accounts</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the list of repository accounts.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Account&gt; Accounts { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.Account.html">Account</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/new/feature/setup/apiSpec/new?filename=BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings_BackendRoot.md&amp;value=---%0Auid%3A%20BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.BackendRoot%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/blob/feature/setup/source/BlackBytesBox.Routed.GitBackend/BlackBytesBox.Routed.GitBackend/Middleware/GitBackendMiddleware/BackendSettings.cs/#L11">View Source</a>
+  </span>
+  <a id="BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings_BackendRoot_" data-uid="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.BackendRoot*"></a>
+  <h4 id="BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings_BackendRoot" data-uid="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.BackendRoot">BackendRoot</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GitBackendMiddleware2.BasicAuthResult BasicAuthCheck(HttpContext context)</code></pre>
+    <pre><code class="lang-csharp hljs">public string BackendRoot { get; set; }</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a></td>
-        <td><span class="parametername">context</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.html">GitBackendMiddleware2</a>.<a class="xref" href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.BasicAuthResult.html">BasicAuthResult</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/new/feature/setup/apiSpec/new?filename=BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2_InvokeAsync_Microsoft_AspNetCore_Http_HttpContext_.md&amp;value=---%0Auid%3A%20BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/blob/feature/setup/source/BlackBytesBox.Routed.GitBackend/BlackBytesBox.Routed.GitBackend/Middleware/GitBackendMiddleware/GitBackendMiddleware2.cs/#L57">View Source</a>
-  </span>
-  <a id="BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2_InvokeAsync_" data-uid="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.InvokeAsync*"></a>
-  <h4 id="BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2_InvokeAsync_Microsoft_AspNetCore_Http_HttpContext_" data-uid="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)">InvokeAsync(HttpContext)</h4>
-  <div class="markdown level1 summary"><p>Processes Git HTTP requests by launching git-http-backend.exe with the proper CGI environment,
-and validates the request using Basic authentication via the provided delegate.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task InvokeAsync(HttpContext context)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a></td>
-        <td><span class="parametername">context</span></td>
-        <td><p>The current HTTP context.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td><p>A task representing asynchronous execution.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -368,10 +307,10 @@ and validates the request using Basic authentication via the provided delegate.<
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/new/feature/setup/apiSpec/new?filename=BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2.md&amp;value=---%0Auid%3A%20BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/new/feature/setup/apiSpec/new?filename=BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings.md&amp;value=---%0Auid%3A%20BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                   </li>
                   <li>
-                    <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/blob/feature/setup/source/BlackBytesBox.Routed.GitBackend/BlackBytesBox.Routed.GitBackend/Middleware/GitBackendMiddleware/GitBackendMiddleware2.cs/#L26" class="contribution-link">View Source</a>
+                    <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/blob/feature/setup/source/BlackBytesBox.Routed.GitBackend/BlackBytesBox.Routed.GitBackend/Middleware/GitBackendMiddleware/BackendSettings.cs/#L8" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

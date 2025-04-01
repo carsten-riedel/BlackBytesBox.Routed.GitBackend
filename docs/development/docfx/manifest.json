@@ -4,6 +4,16 @@
   "files": [
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BlackBytesBox.Routed.GitBackend.DynamicSettingsService-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlackBytesBox.Routed.GitBackend.DynamicSettingsService-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions.EnumerableExtensions.yml",
       "output": {
         ".html": {
@@ -24,10 +34,60 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessRight.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessRight.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.Account.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.Account.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BasicAuth.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BasicAuth.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware.yml",
       "output": {
         ".html": {
           "relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.BasicAuthResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.BasicAuthResult.html"
         }
       },
       "version": ""
@@ -54,6 +114,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.yml",
       "output": {
         ".html": {
@@ -74,10 +144,40 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility.ProcessUtility.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility.ProcessUtility.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BlackBytesBox.Routed.GitBackend.Utility.yml",
       "output": {
         ".html": {
           "relative_path": "api/BlackBytesBox.Routed.GitBackend.Utility.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlackBytesBox.Routed.GitBackend.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlackBytesBox.Routed.GitBackend.html"
         }
       },
       "version": ""
