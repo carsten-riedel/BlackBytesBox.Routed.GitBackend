@@ -35,9 +35,9 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
         /// A delegate to validate the repository name, username, and password.
         /// </param>
         /// <returns>The updated application builder.</returns>
-        public static IApplicationBuilder UseGitBackend2(this IApplicationBuilder builder, string repositoryRoot, string gitHttpBackendPath, string basePath)
+        public static IApplicationBuilder UseGitBackend2(this IApplicationBuilder builder, string gitHttpBackendPath)
         {
-            return builder.UseMiddleware<GitBackendMiddleware2>(repositoryRoot, gitHttpBackendPath, basePath);
+            return builder.UseMiddleware<GitBackendMiddleware2>(gitHttpBackendPath);
         }
     }
 }

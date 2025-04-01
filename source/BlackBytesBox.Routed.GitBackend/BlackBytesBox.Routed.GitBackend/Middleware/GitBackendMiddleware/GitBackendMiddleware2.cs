@@ -27,11 +27,8 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<GitBackendMiddleware2> _logger;
-        private readonly IOptionsMonitor<RepositorySettings> _optionsMonitor;
-        private readonly string _repositoryRoot;
+        private readonly DynamicSettingsService<BackendSettings> _dynamicBackendSettingsService;
         private readonly string _gitHttpBackendPath;
-        private readonly string _basePath;
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GitBackendMiddleware"/> class.
@@ -43,15 +40,12 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
         /// <param name="validateCredentials">
         /// A delegate that receives the repository name, username, and password, and returns true if the credentials are valid for that repo.
         /// </param>
-        public GitBackendMiddleware2(RequestDelegate next, ILogger<GitBackendMiddleware2> logger, IOptionsMonitor<RepositorySettings> optionsMonitor, string repositoryRoot, string gitHttpBackendPath, string basePath)
+        public GitBackendMiddleware2(RequestDelegate next, ILogger<GitBackendMiddleware2> logger, DynamicSettingsService<BackendSettings> dynamicBackendSettingsService, string gitHttpBackendPath)
         {
             _next = next;
             _logger = logger;
-            _repositoryRoot = repositoryRoot;
+            _dynamicBackendSettingsService = dynamicBackendSettingsService;
             _gitHttpBackendPath = gitHttpBackendPath;
-            _basePath = basePath?.TrimEnd('/') ?? "";
-            _optionsMonitor = optionsMonitor;
-
         }
 
         /// <summary>
@@ -120,17 +114,14 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
                 return;
             }
 
-            RepositorySettings settings = _optionsMonitor.CurrentValue;
+            var settings = _dynamicBackendSettingsService.CurrentSettings;
 
             List<string> gitRepoPathSegements = normalizedUriSegments.TakeWhile(e => !e.EndsWith(".git", StringComparison.OrdinalIgnoreCase)).ToList();
             string gitRepoName = normalizedUriSegments.Where(s => s.EndsWith(".git", StringComparison.OrdinalIgnoreCase)).ToList().First();
-
             string gitRepoRemainingPath = string.Join("", normalizedUriSegments.SkipWhile(e => !e.EndsWith(".git", StringComparison.OrdinalIgnoreCase)).ToList().Select(e => "/" + e).ToList());
-            
             int repoDepth = gitRepoPathSegements.Count;
-            string gitDepthRepoPath = System.IO.Path.Combine(new[] { _repositoryRoot, repoDepth.ToString() }.Concat(gitRepoPathSegements).ToArray());
-            string xxx = string.Join("/", gitRepoPathSegements) + @$"/{gitRepoName}";
-            System.IO.Directory.CreateDirectory(gitDepthRepoPath);
+            string gitDepthRepoPath = System.IO.Path.Combine(new[] { settings.BackendRoot, repoDepth.ToString() }.Concat(gitRepoPathSegements).ToArray());
+            string gitRepoPath = string.Join("/", gitRepoPathSegements) + @$"/{gitRepoName}";
 
             var basicAuthCheckResult = BasicAuthCheck(context);
             if (basicAuthCheckResult.IsInvalid)
@@ -139,10 +130,37 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
                 return;
             }
 
+            var allowedAccounts = settings.AccessRights.Where(e => e.Path.Equals(gitRepoPath, StringComparison.OrdinalIgnoreCase)).SelectMany(e=>e.AccountNames).ToList();
+            var allowedBasicAuthAccounts = settings.Accounts.Where(e => allowedAccounts.Contains(e.AccountName)).SelectMany(e => e.BasicAuths).ToList();
 
+            bool allowed = false;
+            foreach (var item in allowedBasicAuthAccounts)
+            {
+                if (item.Username.Equals(basicAuthCheckResult.Username))
+                {
+                    var settingsPw = item.Password;
+                    var authPw = basicAuthCheckResult.Password;
 
-            basicAuthCheckResult.Username = basicAuthCheckResult.Username.Trim();
-            basicAuthCheckResult.Password = basicAuthCheckResult.Password.Trim();
+                    if (item.PasswordType == "md5")
+                    {
+                        settingsPw = string.Concat(System.Security.Cryptography.MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(settingsPw)).Select(b => b.ToString("x2")));
+                        authPw = string.Concat(System.Security.Cryptography.MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(authPw)).Select(b => b.ToString("x2")));
+                    }
+
+                    if (settingsPw.Equals(authPw))
+                    {
+                        allowed = true;
+                    }
+                }
+            }
+
+            if (!allowed)
+            {
+                await WriteUnauthorizedResponseAsync(context, "Unauthorized: Invalid credentials.", false);
+                return;
+            }
+
+            System.IO.Directory.CreateDirectory(gitDepthRepoPath);
 
             // Configure and execute git-http-backend.exe.
             var psi = new ProcessStartInfo

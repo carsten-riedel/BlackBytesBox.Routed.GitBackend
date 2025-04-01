@@ -1,37 +1,41 @@
-﻿namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
-{
-    using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
+namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
+{
     /// <summary>
     /// Represents the repository configuration settings.
     /// </summary>
-    public class RepositorySettings
+    public class BackendSettings
     {
+
+        public string BackendRoot { get; set; } = string.Empty;
         /// <summary>
         /// Gets or sets the list of repository accounts.
         /// </summary>
-        public List<RepositoryAccount> RepositoryAccounts { get; set; } = new List<RepositoryAccount>();
+        public List<Account> Accounts { get; set; } = new List<Account>();
 
         /// <summary>
         /// Gets or sets the list of repository mappings.
         /// </summary>
-        public List<RepositoryMapping> RepositoryMappings { get; set; } = new List<RepositoryMapping>();
+        public List<AccessRight> AccessRights { get; set; } = new List<AccessRight>();
     }
 
     /// <summary>
     /// Represents an account with basic authentication details.
     /// </summary>
-    public class RepositoryAccount
+    public class Account
     {
         /// <summary>
         /// Gets or sets the account name.
         /// </summary>
-        public string AccountName { get; set; }
+        public string AccountName { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the hashed password.
         /// </summary>
-        public string PasswordHash { get; set; }
+        public string Password { get; set; } = string.Empty;
+
+        public string PasswordType { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the list of basic authentication credentials.
@@ -47,23 +51,25 @@
         /// <summary>
         /// Gets or sets the username.
         /// </summary>
-        public string Username { get; set; }
+        public string Username { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the hashed password.
         /// </summary>
-        public string PasswordHash { get; set; }
+        public string Password { get; set; } = string.Empty;
+
+        public string PasswordType { get; set; } = string.Empty;
     }
 
     /// <summary>
     /// Represents a mapping between a repository path and allowed account names.
     /// </summary>
-    public class RepositoryMapping
+    public class AccessRight
     {
         /// <summary>
         /// Gets or sets the repository path.
         /// </summary>
-        public string Path { get; set; }
+        public string Path { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the list of account names allowed to access the repository.
