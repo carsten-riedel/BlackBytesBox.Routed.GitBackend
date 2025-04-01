@@ -29,7 +29,6 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
             var setting = backendSettings.CurrentSettings;
 
             var repoList = setting.AccessRights.Select(e=>e.Path).ToList();
-
             foreach (var repo in repoList)
             {
                 var segements = repo.Split('/');
@@ -39,18 +38,12 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
                 
                 string gitDepthRepoPath = System.IO.Path.Combine(new[] { setting.BackendRoot, repoDepth.ToString() }.Concat(gitRepoPathSegements).ToArray());
 
-
-
                 if (!System.IO.Directory.Exists(Path.Combine(gitDepthRepoPath, gitRepoName)))
                 {
                     System.IO.Directory.CreateDirectory(gitDepthRepoPath);
                     var result = ProcessUtility.ExecuteProcess(@$"git", @$"-C ""{gitDepthRepoPath}"" init --bare {gitRepoName}", "");
                     var result2 = ProcessUtility.ExecuteProcess(@"git", @$"-C ""{Path.Combine(gitDepthRepoPath, gitRepoName)}"" config http.receivepack true", "");
                 }
-
-
-
-
             }
 
 

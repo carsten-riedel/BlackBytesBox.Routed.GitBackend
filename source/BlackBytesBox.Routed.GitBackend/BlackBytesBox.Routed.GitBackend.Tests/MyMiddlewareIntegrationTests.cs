@@ -50,7 +50,7 @@ namespace BlackBytesBox.Routed.GitBackend.Tests
             // Build the application.
             app = builder.Build();
 
-            app.UseGitBackend2( oneup);
+            app.UseGitBackend2(oneup);
 
             // Start the application.
             await app.StartAsync();

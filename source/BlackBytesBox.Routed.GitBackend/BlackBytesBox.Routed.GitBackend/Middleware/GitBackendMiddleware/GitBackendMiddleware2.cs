@@ -1,19 +1,17 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using System;
-using System.Linq;
-using Microsoft.AspNetCore.Http.Extensions;
-using System.Net;
+
 using BlackBytesBox.Routed.GitBackend.Utility;
-using System.Runtime.Intrinsics.X86;
-using BlackBytesBox.Routed.GitBackend.Extensions.EnumerableExtensions;
-using Microsoft.Extensions.Options;
+using BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility;
+
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
 {
@@ -46,6 +44,28 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
             _logger = logger;
             _dynamicBackendSettingsService = dynamicBackendSettingsService;
             _gitHttpBackendPath = gitHttpBackendPath;
+
+            _dynamicBackendSettingsService.OnChange += (settings) =>
+            {
+                _logger.LogInformation("Settings changed.");
+                var repoList = settings.AccessRights.Select(e => e.Path).ToList();
+                foreach (var repo in repoList)
+                {
+                    var segements = repo.Split('/');
+                    List<string> gitRepoPathSegements = segements.TakeWhile(e => !e.EndsWith(".git", StringComparison.OrdinalIgnoreCase)).ToList();
+                    string gitRepoName = segements.Where(s => s.EndsWith(".git", StringComparison.OrdinalIgnoreCase)).ToList().First();
+                    var repoDepth = gitRepoPathSegements.Count;
+
+                    string gitDepthRepoPath = System.IO.Path.Combine(new[] { settings.BackendRoot, repoDepth.ToString() }.Concat(gitRepoPathSegements).ToArray());
+
+                    if (!System.IO.Directory.Exists(Path.Combine(gitDepthRepoPath, gitRepoName)))
+                    {
+                        System.IO.Directory.CreateDirectory(gitDepthRepoPath);
+                        var result = ProcessUtility.ExecuteProcess(@$"git", @$"-C ""{gitDepthRepoPath}"" init --bare {gitRepoName}", "");
+                        var result2 = ProcessUtility.ExecuteProcess(@"git", @$"-C ""{Path.Combine(gitDepthRepoPath, gitRepoName)}"" config http.receivepack true", "");
+                    }
+                }
+            };
         }
 
         /// <summary>
