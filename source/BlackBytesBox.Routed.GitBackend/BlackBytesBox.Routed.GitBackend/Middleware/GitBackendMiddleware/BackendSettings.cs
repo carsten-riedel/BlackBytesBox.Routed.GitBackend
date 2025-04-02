@@ -7,8 +7,14 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
     /// </summary>
     public class BackendSettings
     {
+        public string GitCommandRoot { get; set; } = string.Empty;
 
-        public string BackendRoot { get; set; } = string.Empty;
+        public string GitCommandFilePath { get; set; } = string.Empty;
+
+        public string GitBackendFilePath { get; set; } = string.Empty;
+
+        public string GitRepositorysDirectory { get; set; } = string.Empty;
+
         /// <summary>
         /// Gets or sets the list of repository accounts.
         /// </summary>

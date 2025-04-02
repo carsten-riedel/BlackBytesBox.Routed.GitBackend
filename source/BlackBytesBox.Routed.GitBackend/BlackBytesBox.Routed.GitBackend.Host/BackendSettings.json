@@ -1,0 +1,88 @@
+{
+  "GitCommandRoot": "",
+  "GitCommandFilePath": "",
+  "GitBackendFilePath": "",
+  "GitRepositorysDirectory": "C:\\gitremote",
+  "Accounts": [
+    {
+      "AccountName": "carstenriedel",
+      "Password": "your_password_hash",
+      "PasswordType": "clear",
+      "BasicAuths": [
+        {
+          "Username": "gituser",
+          "Password": "secret",
+          "PasswordType": "clear"
+        }
+      ]
+    },
+    {
+      "AccountName": "account2",
+      "Password": "account2",
+      "PasswordType": "clear",
+      "BasicAuths": [
+        {
+          "Username": "foo",
+          "Password": "faa",
+          "PasswordType": "clear"
+        }
+      ]
+    }
+  ],
+  "AccessRights": [
+    {
+      "Path": "gitrepos/MyProject.git",
+      "AccountNames": [
+        "carstenriedel"
+      ]
+    },
+    {
+      "Path": "gitrepos/MasterProject.git",
+      "AccountNames": [
+        "carstenriedel"
+      ]
+    },
+    {
+      "Path": "gitrepos/MasteraProject.git",
+      "AccountNames": [
+        "carstenriedel"
+      ]
+    },
+    {
+      "Path": "gitrepos/aMasteraProject.git",
+      "AccountNames": [
+        "carstenriedel"
+      ]
+    },
+    {
+      "Path": "gitrepos/bMasteraProject.git",
+      "AccountNames": [
+        "carstenriedel"
+      ]
+    },
+    {
+      "Path": "gitrepos/cMasteraProject.git",
+      "AccountNames": [
+        "carstenriedel"
+      ]
+    },
+    {
+      "Path": "gitrepos/dMasteraProject.git",
+      "AccountNames": [
+        "carstenriedel"
+      ]
+    },
+    {
+      "Path": "gitrepos/eMasteraProject.git",
+      "AccountNames": [
+        "carstenriedel"
+      ]
+    },
+    {
+      "Path": "gitrepos/fMasteraProject.git",
+      "AccountNames": [
+        "carstenriedel"
+      ]
+    }
+  ]
+}

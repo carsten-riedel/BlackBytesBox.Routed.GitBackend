@@ -56,7 +56,7 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
                     string gitRepoName = segements.Where(s => s.EndsWith(".git", StringComparison.OrdinalIgnoreCase)).ToList().First();
                     var repoDepth = gitRepoPathSegements.Count;
 
-                    string gitDepthRepoPath = System.IO.Path.Combine(new[] { settings.BackendRoot, repoDepth.ToString() }.Concat(gitRepoPathSegements).ToArray());
+                    string gitDepthRepoPath = System.IO.Path.Combine(new[] { settings.GitRepositorysDirectory, repoDepth.ToString() }.Concat(gitRepoPathSegements).ToArray());
 
                     if (!System.IO.Directory.Exists(Path.Combine(gitDepthRepoPath, gitRepoName)))
                     {
@@ -140,7 +140,7 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
             string gitRepoName = normalizedUriSegments.Where(s => s.EndsWith(".git", StringComparison.OrdinalIgnoreCase)).ToList().First();
             string gitRepoRemainingPath = string.Join("", normalizedUriSegments.SkipWhile(e => !e.EndsWith(".git", StringComparison.OrdinalIgnoreCase)).ToList().Select(e => "/" + e).ToList());
             int repoDepth = gitRepoPathSegements.Count;
-            string gitDepthRepoPath = System.IO.Path.Combine(new[] { settings.BackendRoot, repoDepth.ToString() }.Concat(gitRepoPathSegements).ToArray());
+            string gitDepthRepoPath = System.IO.Path.Combine(new[] { settings.GitRepositorysDirectory, repoDepth.ToString() }.Concat(gitRepoPathSegements).ToArray());
             string gitRepoPath = string.Join("/", gitRepoPathSegements) + @$"/{gitRepoName}";
 
             var basicAuthCheckResult = BasicAuthCheck(context);

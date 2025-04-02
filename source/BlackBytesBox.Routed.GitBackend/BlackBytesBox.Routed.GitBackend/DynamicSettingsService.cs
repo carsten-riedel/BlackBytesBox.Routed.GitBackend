@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace BlackBytesBox.Routed.GitBackend
 {
@@ -112,14 +113,23 @@ namespace BlackBytesBox.Routed.GitBackend
 
         private void OnFileChanged(object sender, FileSystemEventArgs e)
         {
-            // Debounce to handle multiple events
-            if ((DateTime.UtcNow - _lastChange).TotalMilliseconds < 500)
+            bool shouldProcess;
+            lock (_syncRoot)
+            {
+                shouldProcess = (DateTime.UtcNow - _lastChange).TotalMilliseconds >= 500;
+                if (shouldProcess)
+                {
+                    _lastChange = DateTime.UtcNow;
+                }
+            }
+
+            if (!shouldProcess)
                 return;
 
-            _lastChange = DateTime.UtcNow;
             LoadSettings();
             NotifyChange();
         }
+
 
         /// <summary>
         /// Disposes the file system watcher.
@@ -134,8 +144,10 @@ namespace BlackBytesBox.Routed.GitBackend
         /// </summary>
         private void NotifyChange()
         {
-            // Capture the delegate to avoid race conditions
-            OnChange?.Invoke(_currentSettings);
+            lock (_syncRoot)
+            {
+                OnChange?.Invoke(_currentSettings);
+            }
         }
     }
 }
