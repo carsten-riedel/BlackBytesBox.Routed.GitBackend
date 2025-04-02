@@ -1,11 +1,11 @@
-﻿using BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility;
-
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+
+using BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility;
+
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
 {
@@ -79,12 +79,6 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
                     var result2 = ProcessUtility.ExecuteProcess(@"git", @$"-C ""{Path.Combine(gitDepthRepoPath, gitRepoName)}"" config http.receivepack true", "");
                 }
             }
-  
-
-
-            //string gitDepthRepoPath = System.IO.Path.Combine(new[] { setting.BackendRoot, repoDepth.ToString() }.Concat(gitRepoPathSegements).ToArray());
-
-
 
             services.AddSingleton<DynamicSettingsService<BackendSettings>>(backendSettings);
 

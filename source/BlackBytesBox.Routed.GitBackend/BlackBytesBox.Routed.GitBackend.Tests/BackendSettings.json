@@ -1,5 +1,8 @@
 {
-  "BackendRoot": "C:\\gitremote",
+  "GitCommandRoot": "",
+  "GitCommandFilePath": "",
+  "GitBackendFilePath": "",
+  "GitRepositorysDirectory": "C:\\gitremote",
   "Accounts": [
     {
       "AccountName": "carstenriedel",
@@ -35,6 +38,48 @@
     },
     {
       "Path": "gitrepos/MasterProject.git",
+      "AccountNames": [
+        "carstenriedel"
+      ]
+    },
+    {
+      "Path": "gitrepos/MasteraProject.git",
+      "AccountNames": [
+        "carstenriedel"
+      ]
+    },
+    {
+      "Path": "gitrepos/aMasteraProject.git",
+      "AccountNames": [
+        "carstenriedel"
+      ]
+    },
+    {
+      "Path": "gitrepos/bMasteraProject.git",
+      "AccountNames": [
+        "carstenriedel"
+      ]
+    },
+    {
+      "Path": "gitrepos/cMasteraProject.git",
+      "AccountNames": [
+        "carstenriedel"
+      ]
+    },
+    {
+      "Path": "gitrepos/dMasteraProject.git",
+      "AccountNames": [
+        "carstenriedel"
+      ]
+    },
+    {
+      "Path": "gitrepos/eMasteraProject.git",
+      "AccountNames": [
+        "carstenriedel"
+      ]
+    },
+    {
+      "Path": "gitrepos/fMasteraProject.git",
       "AccountNames": [
         "carstenriedel"
       ]

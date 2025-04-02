@@ -26,7 +26,6 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
         private readonly RequestDelegate _next;
         private readonly ILogger<GitBackendMiddleware2> _logger;
         private readonly DynamicSettingsService<BackendSettings> _dynamicBackendSettingsService;
-        private readonly string _gitHttpBackendPath;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GitBackendMiddleware"/> class.
@@ -38,12 +37,11 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
         /// <param name="validateCredentials">
         /// A delegate that receives the repository name, username, and password, and returns true if the credentials are valid for that repo.
         /// </param>
-        public GitBackendMiddleware2(RequestDelegate next, ILogger<GitBackendMiddleware2> logger, DynamicSettingsService<BackendSettings> dynamicBackendSettingsService, string gitHttpBackendPath)
+        public GitBackendMiddleware2(RequestDelegate next, ILogger<GitBackendMiddleware2> logger, DynamicSettingsService<BackendSettings> dynamicBackendSettingsService)
         {
             _next = next;
             _logger = logger;
             _dynamicBackendSettingsService = dynamicBackendSettingsService;
-            _gitHttpBackendPath = gitHttpBackendPath;
 
             _dynamicBackendSettingsService.OnChange += (settings) =>
             {
@@ -185,8 +183,8 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
             // Configure and execute git-http-backend.exe.
             var psi = new ProcessStartInfo
             {
-                FileName = _gitHttpBackendPath,
-                WorkingDirectory = Path.GetDirectoryName(_gitHttpBackendPath),
+                FileName = settings.GitBackendFilePath,
+                WorkingDirectory = Path.GetDirectoryName(settings.GitBackendFilePath),
                 Arguments = string.Empty,
                 UseShellExecute = false,
                 RedirectStandardOutput = true,

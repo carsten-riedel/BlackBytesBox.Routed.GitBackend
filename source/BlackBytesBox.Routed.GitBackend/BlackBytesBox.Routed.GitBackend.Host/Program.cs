@@ -38,7 +38,7 @@ namespace BlackBytesBox.Routed.GitBackend.Host
 
             app.UseAuthorization();
 
-            app.UseGitBackend2(@"C:\Program Files\Git\mingw64\libexec\git-core\git-http-backend.exe");
+            app.UseGitBackend2();
 
             app.MapControllers();
 
