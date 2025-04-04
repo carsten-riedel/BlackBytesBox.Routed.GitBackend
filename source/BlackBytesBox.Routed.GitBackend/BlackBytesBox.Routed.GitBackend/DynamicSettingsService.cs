@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BlackBytesBox.Routed.GitBackend
@@ -17,10 +18,22 @@ namespace BlackBytesBox.Routed.GitBackend
         private T _currentSettings;
         private DateTime _lastChange = DateTime.MinValue;
 
+
+        private bool _internalUpdate = false;
+
         /// <summary>
         /// Occurs when the settings have been changed.
         /// </summary>
         public event Action<T>? OnChange;
+
+        /// <summary>
+        /// Occurs after settings have changed, allowing you to modify and save in one step.
+        /// </summary>
+        /// <remarks>
+        /// If set, this function will be called after OnChange. The returned T is then saved,
+        /// but the saving does NOT trigger another OnChange event.
+        /// </remarks>
+        public event Func<T, T>? OnChangeWithSaveFunc;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DynamicSettingsService{T}"/> class.
@@ -79,24 +92,44 @@ namespace BlackBytesBox.Routed.GitBackend
         {
             lock (_syncRoot)
             {
-                try
-                {
-                    if (!File.Exists(_filePath))
-                    {
-                        _currentSettings = new T();
-                        SaveSettings(_currentSettings);
-                        return;
-                    }
-
-                    var json = File.ReadAllText(_filePath);
-                    _currentSettings = JsonSerializer.Deserialize<T>(json) ?? new T();
-                }
-                catch
+                // Create new if file does not exist
+                if (!File.Exists(_filePath))
                 {
                     _currentSettings = new T();
+                    SaveSettings(_currentSettings);
+                    return;
+                }
+
+                const int maxAttempts = 3;
+                for (int attempt = 1; attempt <= maxAttempts; attempt++)
+                {
+                    try
+                    {
+                        // Attempt to read with a share mode that allows other readers.
+                        using var fs = new FileStream(
+                            _filePath,
+                            FileMode.Open,
+                            FileAccess.Read,
+                            FileShare.ReadWrite | FileShare.Delete
+                        );
+                        _currentSettings = JsonSerializer.Deserialize<T>(fs) ?? new T();
+                        return; // If success, exit the method
+                    }
+                    catch (IOException ex) when (attempt < maxAttempts)
+                    {
+                        // Wait briefly, then retry
+                        Thread.Sleep(100); // Wait 100ms before next attempt
+                    }
+                    catch
+                    {
+                        // If it's a different error or we ran out of attempts, fall back
+                        _currentSettings = new T();
+                        return;
+                    }
                 }
             }
         }
+
 
         private void SaveSettings(T settings)
         {
@@ -130,7 +163,6 @@ namespace BlackBytesBox.Routed.GitBackend
             NotifyChange();
         }
 
-
         /// <summary>
         /// Disposes the file system watcher.
         /// </summary>
@@ -140,13 +172,38 @@ namespace BlackBytesBox.Routed.GitBackend
         }
 
         /// <summary>
-        /// Notifies subscribers that the settings have changed.
+        /// Notifies subscribers that the settings have changed, and calls OnChangeWithSaveFunc if present.
         /// </summary>
         private void NotifyChange()
         {
+            if (_internalUpdate)
+                return;
+
+            T updatedSettingsSnapshot;
+
             lock (_syncRoot)
             {
-                OnChange?.Invoke(_currentSettings);
+                updatedSettingsSnapshot = _currentSettings;
+            }
+
+            // 1) First notify the read-only OnChange event
+            OnChange?.Invoke(updatedSettingsSnapshot);
+
+            // 2) Then, if there's a OnChangeWithSaveFunc handler, let it transform & re-save
+            if (OnChangeWithSaveFunc != null)
+            {
+                lock (_syncRoot)
+                {
+                    // Provide the *latest* settings in case OnChange changed something in parallel
+                    var possiblyNewSnapshot = _currentSettings;
+                    var newSettings = OnChangeWithSaveFunc(possiblyNewSnapshot);
+
+                    _watcher.EnableRaisingEvents = false;
+                    // Re-save. This saving won't trigger another event because
+                    // we won't call NotifyChange() again here (avoid loops).
+                    SaveSettings(newSettings);
+                    _watcher.EnableRaisingEvents = true;
+                }
             }
         }
     }

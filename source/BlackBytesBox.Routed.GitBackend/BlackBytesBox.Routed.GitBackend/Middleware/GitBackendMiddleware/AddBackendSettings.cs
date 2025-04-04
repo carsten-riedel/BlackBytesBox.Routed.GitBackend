@@ -80,6 +80,35 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
                 }
             }
 
+            backendSettings.UpdateSettings((settings) =>
+            {
+                //upgrade insecure passwords
+                foreach (var account in settings.Accounts)
+                {
+                    if (account.PasswordType == "clear")
+                    {
+                        account.Password = string.Concat(System.Security.Cryptography.SHA1.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(account.Password)).Select(b => b.ToString("x2")));
+                        account.PasswordType = "SHA1";
+                    }
+                }
+
+                foreach (var account in settings.Accounts)
+                {
+                    foreach (var basic in account.BasicAuths)
+                    {
+                        if (basic.PasswordType == "clear")
+                        {
+                            basic.Password = string.Concat(System.Security.Cryptography.SHA1.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(basic.Password)).Select(b => b.ToString("x2")));
+                            basic.PasswordType = "SHA1";
+                        }
+                    }
+                }
+
+                return settings;
+            });
+
+
+
             services.AddSingleton<DynamicSettingsService<BackendSettings>>(backendSettings);
 
             return services;

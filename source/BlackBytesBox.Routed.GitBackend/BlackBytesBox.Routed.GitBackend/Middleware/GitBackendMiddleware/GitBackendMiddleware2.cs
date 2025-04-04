@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -63,6 +64,32 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
                         var result2 = ProcessUtility.ExecuteProcess(@"git", @$"-C ""{Path.Combine(gitDepthRepoPath, gitRepoName)}"" config http.receivepack true", "");
                     }
                 }
+
+            };
+
+            _dynamicBackendSettingsService.OnChangeWithSaveFunc += (settings) =>
+            {
+                //upgrade insecure passwords
+                foreach (var account in settings.Accounts)
+                {
+                    if (account.PasswordType == "clear")
+                    {
+                        account.Password = string.Concat(System.Security.Cryptography.SHA1.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(account.Password)).Select(b => b.ToString("x2")));
+                        account.PasswordType = "SHA1";
+                    }
+                }
+                foreach (var account in settings.Accounts)
+                {
+                    foreach (var basic in account.BasicAuths)
+                    {
+                        if (basic.PasswordType == "clear")
+                        {
+                            basic.Password = string.Concat(System.Security.Cryptography.SHA1.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(basic.Password)).Select(b => b.ToString("x2")));
+                            basic.PasswordType = "SHA1";
+                        }
+                    }
+                }
+                return settings;
             };
         }
 
@@ -159,10 +186,10 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
                     var settingsPw = item.Password;
                     var authPw = basicAuthCheckResult.Password;
 
-                    if (item.PasswordType == "md5")
+                    if (item.PasswordType == "SHA1")
                     {
-                        settingsPw = string.Concat(System.Security.Cryptography.MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(settingsPw)).Select(b => b.ToString("x2")));
-                        authPw = string.Concat(System.Security.Cryptography.MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(authPw)).Select(b => b.ToString("x2")));
+                        settingsPw = string.Concat(System.Security.Cryptography.SHA1.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(settingsPw)).Select(b => b.ToString("x2")));
+                        authPw = string.Concat(System.Security.Cryptography.SHA1.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(authPw)).Select(b => b.ToString("x2")));
                     }
 
                     if (settingsPw.Equals(authPw))
