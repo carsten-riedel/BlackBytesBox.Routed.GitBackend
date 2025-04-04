@@ -27,15 +27,6 @@ namespace BlackBytesBox.Routed.GitBackend
         public event Action<T>? OnChange;
 
         /// <summary>
-        /// Occurs after settings have changed, allowing you to modify and save in one step.
-        /// </summary>
-        /// <remarks>
-        /// If set, this function will be called after OnChange. The returned T is then saved,
-        /// but the saving does NOT trigger another OnChange event.
-        /// </remarks>
-        public event Func<T, T>? OnChangeWithSaveFunc;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="DynamicSettingsService{T}"/> class.
         /// </summary>
         /// <param name="filePath">The file path for the settings file. Defaults to "dynamicsettings.json".</param>
@@ -75,6 +66,28 @@ namespace BlackBytesBox.Routed.GitBackend
         }
 
         /// <summary>
+        /// Updates the settings using the provided update function.
+        /// </summary>
+        /// <param name="updateFn">A function that takes the current settings and returns the updated settings.</param>
+        public void UpdateSettings(Func<T, T> updateFn, bool raiseEvents = true)
+        {
+            lock (_syncRoot)
+            {
+                var newSettings = updateFn(_currentSettings);
+
+                if (raiseEvents)
+                {
+                    SaveSettings(newSettings);
+                }
+                else
+                {
+                    _watcher.EnableRaisingEvents = false;
+                    SaveSettings(newSettings);
+                    _watcher.EnableRaisingEvents = true;
+                }
+            }
+        }
+
         /// Updates the settings using the provided update function.
         /// </summary>
         /// <param name="updateFn">A function that takes the current settings and returns the updated settings.</param>
@@ -176,8 +189,6 @@ namespace BlackBytesBox.Routed.GitBackend
         /// </summary>
         private void NotifyChange()
         {
-            if (_internalUpdate)
-                return;
 
             T updatedSettingsSnapshot;
 
@@ -188,23 +199,6 @@ namespace BlackBytesBox.Routed.GitBackend
 
             // 1) First notify the read-only OnChange event
             OnChange?.Invoke(updatedSettingsSnapshot);
-
-            // 2) Then, if there's a OnChangeWithSaveFunc handler, let it transform & re-save
-            if (OnChangeWithSaveFunc != null)
-            {
-                lock (_syncRoot)
-                {
-                    // Provide the *latest* settings in case OnChange changed something in parallel
-                    var possiblyNewSnapshot = _currentSettings;
-                    var newSettings = OnChangeWithSaveFunc(possiblyNewSnapshot);
-
-                    _watcher.EnableRaisingEvents = false;
-                    // Re-save. This saving won't trigger another event because
-                    // we won't call NotifyChange() again here (avoid loops).
-                    SaveSettings(newSettings);
-                    _watcher.EnableRaisingEvents = true;
-                }
-            }
         }
     }
 }

@@ -65,32 +65,32 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
                     }
                 }
 
-            };
-
-            _dynamicBackendSettingsService.OnChangeWithSaveFunc += (settings) =>
-            {
-                //upgrade insecure passwords
-                foreach (var account in settings.Accounts)
+                _dynamicBackendSettingsService.UpdateSettings(curSetting => 
                 {
-                    if (account.PasswordType == "clear")
+                    //upgrade insecure passwords
+                    foreach (var account in curSetting.Accounts)
                     {
-                        account.Password = string.Concat(System.Security.Cryptography.SHA1.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(account.Password)).Select(b => b.ToString("x2")));
-                        account.PasswordType = "SHA1";
-                    }
-                }
-                foreach (var account in settings.Accounts)
-                {
-                    foreach (var basic in account.BasicAuths)
-                    {
-                        if (basic.PasswordType == "clear")
+                        if (account.PasswordType == "clear")
                         {
-                            basic.Password = string.Concat(System.Security.Cryptography.SHA1.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(basic.Password)).Select(b => b.ToString("x2")));
-                            basic.PasswordType = "SHA1";
+                            account.Password = string.Concat(System.Security.Cryptography.SHA1.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(account.Password)).Select(b => b.ToString("x2")));
+                            account.PasswordType = "SHA1";
                         }
                     }
-                }
-                return settings;
+                    foreach (var account in curSetting.Accounts)
+                    {
+                        foreach (var basic in account.BasicAuths)
+                        {
+                            if (basic.PasswordType == "clear")
+                            {
+                                basic.Password = string.Concat(System.Security.Cryptography.SHA1.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(basic.Password)).Select(b => b.ToString("x2")));
+                                basic.PasswordType = "SHA1";
+                            }
+                        }
+                    }
+                    return curSetting;
+                },false);
             };
+
         }
 
         /// <summary>

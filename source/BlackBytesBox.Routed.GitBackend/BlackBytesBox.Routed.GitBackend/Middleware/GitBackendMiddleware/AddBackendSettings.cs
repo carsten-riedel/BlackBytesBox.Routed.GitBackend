@@ -105,7 +105,7 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
                 }
 
                 return settings;
-            });
+            },false);
 
 
 
