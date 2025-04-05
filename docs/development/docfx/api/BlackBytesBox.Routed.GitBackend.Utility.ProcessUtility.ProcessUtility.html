@@ -107,6 +107,9 @@
                             <a href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessRight.html" title="AccessRight" class="">AccessRight</a>
                           </li>
                           <li class="">
+                            <a href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight.html" title="AccessUsersRight" class="">AccessUsersRight</a>
+                          </li>
+                          <li class="">
                             <a href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.Account.html" title="Account" class="">Account</a>
                           </li>
                           <li class="">
@@ -129,6 +132,9 @@
                           </li>
                           <li class="">
                             <a href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.html" title="IServiceCollectionExtensions" class="">IServiceCollectionExtensions</a>
+                          </li>
+                          <li class="">
+                            <a href="BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.html" title="MergedBasicAuth" class="">MergedBasicAuth</a>
                           </li>
                         </ul>
                     </li>
@@ -351,6 +357,87 @@ else
 Console.WriteLine(&quot;Executable not found in the system PATH.&quot;);
 }</p>
 
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/new/feature/setup/apiSpec/new?filename=BlackBytesBox_Routed_GitBackend_Utility_ProcessUtility_ProcessUtility_LocateExecutableRecursively_System_String_System_String_.md&amp;value=---%0Auid%3A%20BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility.ProcessUtility.LocateExecutableRecursively(System.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/blob/feature/setup/source/BlackBytesBox.Routed.GitBackend/BlackBytesBox.Routed.GitBackend/Utility/ProcessUtility/LocateExecutableRecursively.cs/#L43">View Source</a>
+  </span>
+  <a id="BlackBytesBox_Routed_GitBackend_Utility_ProcessUtility_ProcessUtility_LocateExecutableRecursively_" data-uid="BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility.ProcessUtility.LocateExecutableRecursively*"></a>
+  <h4 id="BlackBytesBox_Routed_GitBackend_Utility_ProcessUtility_ProcessUtility_LocateExecutableRecursively_System_String_System_String_" data-uid="BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility.ProcessUtility.LocateExecutableRecursively(System.String,System.String)">LocateExecutableRecursively(string, string)</h4>
+  <div class="markdown level1 summary"><p>Recursively searches for an executable in the specified directory tree.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static (string Directory, string FileName, string FullPath)? LocateExecutableRecursively(string fileName, string startDirectory)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">fileName</span></td>
+        <td><p>The name of the executable file (e.g., &quot;git&quot; or &quot;git.exe&quot;).</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">startDirectory</span></td>
+        <td><p>The root directory to start the search from.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.string,system.string-.directory">Directory</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.string,system.string-.filename">FileName</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.string,system.string-.fullpath">FullPath</a>)?</td>
+        <td><p>A tuple containing:</p>
+<ul>
+<li>Directory: The directory in which the executable was found.</li>
+<li>FileName: The filename with the proper extension.</li>
+<li>FullPath: The fully qualified path to the executable.
+Returns null if the executable is not found.</li>
+</ul>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="BlackBytesBox_Routed_GitBackend_Utility_ProcessUtility_ProcessUtility_LocateExecutableRecursively_System_String_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>On Windows, if the provided filename lacks an extension, &quot;.exe&quot; is appended for the search.
+This method searches all subdirectories of the specified starting directory for the executable.
+It returns a tuple with the directory where the executable was found, the filename (with extension),
+and the fully qualified path to the executable.</p>
+</div>
+  <h5 id="BlackBytesBox_Routed_GitBackend_Utility_ProcessUtility_ProcessUtility_LocateExecutableRecursively_System_String_System_String__examples">Examples</h5>
+  <p>var result = LocateExecutableRecursively(&quot;git&quot;, @&quot;C:\Program Files&quot;);
+if (result != null)
+{
+Console.WriteLine($&quot;Directory: {result.Value.Directory}&quot;);
+Console.WriteLine($&quot;FileName: {result.Value.FileName}&quot;);
+Console.WriteLine($&quot;FullPath: {result.Value.FullPath}&quot;);
+}
+else
+{
+Console.WriteLine(&quot;Executable not found in the specified directory tree.&quot;);
+}</p>
+
 
 </article>
           </div>
@@ -363,7 +450,7 @@ Console.WriteLine(&quot;Executable not found in the system PATH.&quot;);
                     <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/new/feature/setup/apiSpec/new?filename=BlackBytesBox_Routed_GitBackend_Utility_ProcessUtility_ProcessUtility.md&amp;value=---%0Auid%3A%20BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility.ProcessUtility%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                   </li>
                   <li>
-                    <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/blob/feature/setup/source/BlackBytesBox.Routed.GitBackend/BlackBytesBox.Routed.GitBackend/Utility/ProcessUtility/LocateExecutable.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend/blob/feature/setup/source/BlackBytesBox.Routed.GitBackend/BlackBytesBox.Routed.GitBackend/Utility/ProcessUtility/LocateExecutableRecursively.cs/#L8" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

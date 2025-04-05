@@ -86,6 +86,15 @@ references:
   fullName.vb: BlackBytesBox.Routed.GitBackend.DynamicSettingsService(Of T).UpdateSettings(System.Func(Of T, T))
   nameWithType: DynamicSettingsService<T>.UpdateSettings(Func<T, T>)
   nameWithType.vb: DynamicSettingsService(Of T).UpdateSettings(Func(Of T, T))
+- uid: BlackBytesBox.Routed.GitBackend.DynamicSettingsService`1.UpdateSettings(System.Func{`0,`0},System.Boolean)
+  name: UpdateSettings(Func<T, T>, bool)
+  href: api/BlackBytesBox.Routed.GitBackend.DynamicSettingsService-1.html#BlackBytesBox_Routed_GitBackend_DynamicSettingsService_1_UpdateSettings_System_Func__0__0__System_Boolean_
+  commentId: M:BlackBytesBox.Routed.GitBackend.DynamicSettingsService`1.UpdateSettings(System.Func{`0,`0},System.Boolean)
+  name.vb: UpdateSettings(Func(Of T, T), Boolean)
+  fullName: BlackBytesBox.Routed.GitBackend.DynamicSettingsService<T>.UpdateSettings(System.Func<T, T>, bool)
+  fullName.vb: BlackBytesBox.Routed.GitBackend.DynamicSettingsService(Of T).UpdateSettings(System.Func(Of T, T), Boolean)
+  nameWithType: DynamicSettingsService<T>.UpdateSettings(Func<T, T>, bool)
+  nameWithType.vb: DynamicSettingsService(Of T).UpdateSettings(Func(Of T, T), Boolean)
 - uid: BlackBytesBox.Routed.GitBackend.DynamicSettingsService`1.UpdateSettings*
   name: UpdateSettings
   href: api/BlackBytesBox.Routed.GitBackend.DynamicSettingsService-1.html#BlackBytesBox_Routed_GitBackend_DynamicSettingsService_1_UpdateSettings_
@@ -148,6 +157,19 @@ references:
   isSpec: "True"
   fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessRight.AccountNames
   nameWithType: AccessRight.AccountNames
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessRight.OwnerAccountName
+  name: OwnerAccountName
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessRight.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_AccessRight_OwnerAccountName
+  commentId: P:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessRight.OwnerAccountName
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessRight.OwnerAccountName
+  nameWithType: AccessRight.OwnerAccountName
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessRight.OwnerAccountName*
+  name: OwnerAccountName
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessRight.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_AccessRight_OwnerAccountName_
+  commentId: Overload:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessRight.OwnerAccountName
+  isSpec: "True"
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessRight.OwnerAccountName
+  nameWithType: AccessRight.OwnerAccountName
 - uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessRight.Path
   name: Path
   href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessRight.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_AccessRight_Path
@@ -161,6 +183,38 @@ references:
   isSpec: "True"
   fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessRight.Path
   nameWithType: AccessRight.Path
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight
+  name: AccessUsersRight
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight.html
+  commentId: T:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight
+  nameWithType: AccessUsersRight
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight.AccessRight
+  name: AccessRight
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_AccessUsersRight_AccessRight
+  commentId: P:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight.AccessRight
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight.AccessRight
+  nameWithType: AccessUsersRight.AccessRight
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight.AccessRight*
+  name: AccessRight
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_AccessUsersRight_AccessRight_
+  commentId: Overload:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight.AccessRight
+  isSpec: "True"
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight.AccessRight
+  nameWithType: AccessUsersRight.AccessRight
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight.AccountName
+  name: AccountName
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_AccessUsersRight_AccountName
+  commentId: P:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight.AccountName
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight.AccountName
+  nameWithType: AccessUsersRight.AccountName
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight.AccountName*
+  name: AccountName
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_AccessUsersRight_AccountName_
+  commentId: Overload:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight.AccountName
+  isSpec: "True"
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight.AccountName
+  nameWithType: AccessUsersRight.AccountName
 - uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.Account
   name: Account
   href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.Account.html
@@ -251,19 +305,58 @@ references:
   isSpec: "True"
   fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.Accounts
   nameWithType: BackendSettings.Accounts
-- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.BackendRoot
-  name: BackendRoot
-  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings_BackendRoot
-  commentId: P:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.BackendRoot
-  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.BackendRoot
-  nameWithType: BackendSettings.BackendRoot
-- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.BackendRoot*
-  name: BackendRoot
-  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings_BackendRoot_
-  commentId: Overload:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.BackendRoot
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitBackendFilePath
+  name: GitBackendFilePath
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings_GitBackendFilePath
+  commentId: P:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitBackendFilePath
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitBackendFilePath
+  nameWithType: BackendSettings.GitBackendFilePath
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitBackendFilePath*
+  name: GitBackendFilePath
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings_GitBackendFilePath_
+  commentId: Overload:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitBackendFilePath
   isSpec: "True"
-  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.BackendRoot
-  nameWithType: BackendSettings.BackendRoot
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitBackendFilePath
+  nameWithType: BackendSettings.GitBackendFilePath
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitCommandFilePath
+  name: GitCommandFilePath
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings_GitCommandFilePath
+  commentId: P:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitCommandFilePath
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitCommandFilePath
+  nameWithType: BackendSettings.GitCommandFilePath
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitCommandFilePath*
+  name: GitCommandFilePath
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings_GitCommandFilePath_
+  commentId: Overload:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitCommandFilePath
+  isSpec: "True"
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitCommandFilePath
+  nameWithType: BackendSettings.GitCommandFilePath
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitCommandRoot
+  name: GitCommandRoot
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings_GitCommandRoot
+  commentId: P:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitCommandRoot
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitCommandRoot
+  nameWithType: BackendSettings.GitCommandRoot
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitCommandRoot*
+  name: GitCommandRoot
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings_GitCommandRoot_
+  commentId: Overload:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitCommandRoot
+  isSpec: "True"
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitCommandRoot
+  nameWithType: BackendSettings.GitCommandRoot
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitRepositorysDirectory
+  name: GitRepositorysDirectory
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings_GitRepositorysDirectory
+  commentId: P:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitRepositorysDirectory
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitRepositorysDirectory
+  nameWithType: BackendSettings.GitRepositorysDirectory
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitRepositorysDirectory*
+  name: GitRepositorysDirectory
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings_GitRepositorysDirectory_
+  commentId: Overload:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitRepositorysDirectory
+  isSpec: "True"
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings.GitRepositorysDirectory
+  nameWithType: BackendSettings.GitRepositorysDirectory
 - uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BasicAuth
   name: BasicAuth
   href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BasicAuth.html
@@ -353,15 +446,15 @@ references:
   commentId: T:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2
   fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2
   nameWithType: GitBackendMiddleware2
-- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger{BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2},BlackBytesBox.Routed.GitBackend.DynamicSettingsService{BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings},System.String)
-  name: GitBackendMiddleware2(RequestDelegate, ILogger<GitBackendMiddleware2>, DynamicSettingsService<BackendSettings>, string)
-  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2__ctor_Microsoft_AspNetCore_Http_RequestDelegate_Microsoft_Extensions_Logging_ILogger_BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2__BlackBytesBox_Routed_GitBackend_DynamicSettingsService_BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings__System_String_
-  commentId: M:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger{BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2},BlackBytesBox.Routed.GitBackend.DynamicSettingsService{BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings},System.String)
-  name.vb: New(RequestDelegate, ILogger(Of GitBackendMiddleware2), DynamicSettingsService(Of BackendSettings), String)
-  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.GitBackendMiddleware2(Microsoft.AspNetCore.Http.RequestDelegate, Microsoft.Extensions.Logging.ILogger<BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2>, BlackBytesBox.Routed.GitBackend.DynamicSettingsService<BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings>, string)
-  fullName.vb: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.New(Microsoft.AspNetCore.Http.RequestDelegate, Microsoft.Extensions.Logging.ILogger(Of BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2), BlackBytesBox.Routed.GitBackend.DynamicSettingsService(Of BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings), String)
-  nameWithType: GitBackendMiddleware2.GitBackendMiddleware2(RequestDelegate, ILogger<GitBackendMiddleware2>, DynamicSettingsService<BackendSettings>, string)
-  nameWithType.vb: GitBackendMiddleware2.New(RequestDelegate, ILogger(Of GitBackendMiddleware2), DynamicSettingsService(Of BackendSettings), String)
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger{BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2},BlackBytesBox.Routed.GitBackend.DynamicSettingsService{BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings})
+  name: GitBackendMiddleware2(RequestDelegate, ILogger<GitBackendMiddleware2>, DynamicSettingsService<BackendSettings>)
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2__ctor_Microsoft_AspNetCore_Http_RequestDelegate_Microsoft_Extensions_Logging_ILogger_BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2__BlackBytesBox_Routed_GitBackend_DynamicSettingsService_BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings__
+  commentId: M:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger{BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2},BlackBytesBox.Routed.GitBackend.DynamicSettingsService{BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings})
+  name.vb: New(RequestDelegate, ILogger(Of GitBackendMiddleware2), DynamicSettingsService(Of BackendSettings))
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.GitBackendMiddleware2(Microsoft.AspNetCore.Http.RequestDelegate, Microsoft.Extensions.Logging.ILogger<BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2>, BlackBytesBox.Routed.GitBackend.DynamicSettingsService<BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings>)
+  fullName.vb: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.New(Microsoft.AspNetCore.Http.RequestDelegate, Microsoft.Extensions.Logging.ILogger(Of BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2), BlackBytesBox.Routed.GitBackend.DynamicSettingsService(Of BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings))
+  nameWithType: GitBackendMiddleware2.GitBackendMiddleware2(RequestDelegate, ILogger<GitBackendMiddleware2>, DynamicSettingsService<BackendSettings>)
+  nameWithType.vb: GitBackendMiddleware2.New(RequestDelegate, ILogger(Of GitBackendMiddleware2), DynamicSettingsService(Of BackendSettings))
 - uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.#ctor*
   name: GitBackendMiddleware2
   href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddleware2.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddleware2__ctor_
@@ -491,15 +584,12 @@ references:
   isSpec: "True"
   fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.UseGitBackend
   nameWithType: GitBackendMiddlewareExtensions.UseGitBackend
-- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.UseGitBackend2(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)
-  name: UseGitBackend2(IApplicationBuilder, string)
-  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddlewareExtensions_UseGitBackend2_Microsoft_AspNetCore_Builder_IApplicationBuilder_System_String_
-  commentId: M:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.UseGitBackend2(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)
-  name.vb: UseGitBackend2(IApplicationBuilder, String)
-  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.UseGitBackend2(Microsoft.AspNetCore.Builder.IApplicationBuilder, string)
-  fullName.vb: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.UseGitBackend2(Microsoft.AspNetCore.Builder.IApplicationBuilder, String)
-  nameWithType: GitBackendMiddlewareExtensions.UseGitBackend2(IApplicationBuilder, string)
-  nameWithType.vb: GitBackendMiddlewareExtensions.UseGitBackend2(IApplicationBuilder, String)
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.UseGitBackend2(Microsoft.AspNetCore.Builder.IApplicationBuilder)
+  name: UseGitBackend2(IApplicationBuilder)
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddlewareExtensions_UseGitBackend2_Microsoft_AspNetCore_Builder_IApplicationBuilder_
+  commentId: M:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.UseGitBackend2(Microsoft.AspNetCore.Builder.IApplicationBuilder)
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.UseGitBackend2(Microsoft.AspNetCore.Builder.IApplicationBuilder)
+  nameWithType: GitBackendMiddlewareExtensions.UseGitBackend2(IApplicationBuilder)
 - uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.UseGitBackend2*
   name: UseGitBackend2
   href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.GitBackendMiddlewareExtensions.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_GitBackendMiddlewareExtensions_UseGitBackend2_
@@ -513,22 +603,67 @@ references:
   commentId: T:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions
   fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions
   nameWithType: IServiceCollectionExtensions
-- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.AddBackendSettings(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.Action{BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings})
-  name: AddBackendSettings(IServiceCollection, string, Action<BackendSettings>?)
-  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_IServiceCollectionExtensions_AddBackendSettings_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_String_System_Action_BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings__
-  commentId: M:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.AddBackendSettings(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.Action{BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings})
-  name.vb: AddBackendSettings(IServiceCollection, String, Action(Of BackendSettings))
-  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.AddBackendSettings(Microsoft.Extensions.DependencyInjection.IServiceCollection, string, System.Action<BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings>?)
-  fullName.vb: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.AddBackendSettings(Microsoft.Extensions.DependencyInjection.IServiceCollection, String, System.Action(Of BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings))
-  nameWithType: IServiceCollectionExtensions.AddBackendSettings(IServiceCollection, string, Action<BackendSettings>?)
-  nameWithType.vb: IServiceCollectionExtensions.AddBackendSettings(IServiceCollection, String, Action(Of BackendSettings))
-- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.AddBackendSettings*
-  name: AddBackendSettings
-  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_IServiceCollectionExtensions_AddBackendSettings_
-  commentId: Overload:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.AddBackendSettings
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.AddBackendSettings2(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.Action{BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings})
+  name: AddBackendSettings2(IServiceCollection, string, Action<BackendSettings>?)
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_IServiceCollectionExtensions_AddBackendSettings2_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_String_System_Action_BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_BackendSettings__
+  commentId: M:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.AddBackendSettings2(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.Action{BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings})
+  name.vb: AddBackendSettings2(IServiceCollection, String, Action(Of BackendSettings))
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.AddBackendSettings2(Microsoft.Extensions.DependencyInjection.IServiceCollection, string, System.Action<BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings>?)
+  fullName.vb: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.AddBackendSettings2(Microsoft.Extensions.DependencyInjection.IServiceCollection, String, System.Action(Of BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.BackendSettings))
+  nameWithType: IServiceCollectionExtensions.AddBackendSettings2(IServiceCollection, string, Action<BackendSettings>?)
+  nameWithType.vb: IServiceCollectionExtensions.AddBackendSettings2(IServiceCollection, String, Action(Of BackendSettings))
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.AddBackendSettings2*
+  name: AddBackendSettings2
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_IServiceCollectionExtensions_AddBackendSettings2_
+  commentId: Overload:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.AddBackendSettings2
   isSpec: "True"
-  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.AddBackendSettings
-  nameWithType: IServiceCollectionExtensions.AddBackendSettings
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.AddBackendSettings2
+  nameWithType: IServiceCollectionExtensions.AddBackendSettings2
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth
+  name: MergedBasicAuth
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.html
+  commentId: T:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth
+  nameWithType: MergedBasicAuth
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.AccessRight
+  name: AccessRight
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_MergedBasicAuth_AccessRight
+  commentId: P:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.AccessRight
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.AccessRight
+  nameWithType: MergedBasicAuth.AccessRight
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.AccessRight*
+  name: AccessRight
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_MergedBasicAuth_AccessRight_
+  commentId: Overload:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.AccessRight
+  isSpec: "True"
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.AccessRight
+  nameWithType: MergedBasicAuth.AccessRight
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.AccountName
+  name: AccountName
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_MergedBasicAuth_AccountName
+  commentId: P:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.AccountName
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.AccountName
+  nameWithType: MergedBasicAuth.AccountName
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.AccountName*
+  name: AccountName
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_MergedBasicAuth_AccountName_
+  commentId: Overload:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.AccountName
+  isSpec: "True"
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.AccountName
+  nameWithType: MergedBasicAuth.AccountName
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.BasicAuth
+  name: BasicAuth
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_MergedBasicAuth_BasicAuth
+  commentId: P:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.BasicAuth
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.BasicAuth
+  nameWithType: MergedBasicAuth.BasicAuth
+- uid: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.BasicAuth*
+  name: BasicAuth
+  href: api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.html#BlackBytesBox_Routed_GitBackend_Middleware_GitBackendMiddleware_MergedBasicAuth_BasicAuth_
+  commentId: Overload:BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.BasicAuth
+  isSpec: "True"
+  fullName: BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.BasicAuth
+  nameWithType: MergedBasicAuth.BasicAuth
 - uid: BlackBytesBox.Routed.GitBackend.Utility
   name: BlackBytesBox.Routed.GitBackend.Utility
   href: api/BlackBytesBox.Routed.GitBackend.Utility.html
@@ -601,6 +736,22 @@ references:
   isSpec: "True"
   fullName: BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility.ProcessUtility.LocateExecutable
   nameWithType: ProcessUtility.LocateExecutable
+- uid: BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility.ProcessUtility.LocateExecutableRecursively(System.String,System.String)
+  name: LocateExecutableRecursively(string, string)
+  href: api/BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility.ProcessUtility.html#BlackBytesBox_Routed_GitBackend_Utility_ProcessUtility_ProcessUtility_LocateExecutableRecursively_System_String_System_String_
+  commentId: M:BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility.ProcessUtility.LocateExecutableRecursively(System.String,System.String)
+  name.vb: LocateExecutableRecursively(String, String)
+  fullName: BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility.ProcessUtility.LocateExecutableRecursively(string, string)
+  fullName.vb: BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility.ProcessUtility.LocateExecutableRecursively(String, String)
+  nameWithType: ProcessUtility.LocateExecutableRecursively(string, string)
+  nameWithType.vb: ProcessUtility.LocateExecutableRecursively(String, String)
+- uid: BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility.ProcessUtility.LocateExecutableRecursively*
+  name: LocateExecutableRecursively
+  href: api/BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility.ProcessUtility.html#BlackBytesBox_Routed_GitBackend_Utility_ProcessUtility_ProcessUtility_LocateExecutableRecursively_
+  commentId: Overload:BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility.ProcessUtility.LocateExecutableRecursively
+  isSpec: "True"
+  fullName: BlackBytesBox.Routed.GitBackend.Utility.ProcessUtility.ProcessUtility.LocateExecutableRecursively
+  nameWithType: ProcessUtility.LocateExecutableRecursively
 - uid: BlackBytesBox.Routed.Middleware
   name: BlackBytesBox.Routed.Middleware
   href: api/BlackBytesBox.Routed.Middleware.html

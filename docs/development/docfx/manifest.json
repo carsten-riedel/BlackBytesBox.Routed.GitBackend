@@ -1,5 +1,5 @@
 {
-  "source_base_path": "/home/runner/work/BlackBytesBox.Routed.GitBackend/BlackBytesBox.Routed.GitBackend/.config/docfx/build",
+  "source_base_path": "D:/a/BlackBytesBox.Routed.GitBackend/BlackBytesBox.Routed.GitBackend/.config/docfx/build",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -38,6 +38,16 @@
       "output": {
         ".html": {
           "relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessRight.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.AccessUsersRight.html"
         }
       },
       "version": ""
@@ -118,6 +128,16 @@
       "output": {
         ".html": {
           "relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.IServiceCollectionExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware.MergedBasicAuth.html"
         }
       },
       "version": ""
