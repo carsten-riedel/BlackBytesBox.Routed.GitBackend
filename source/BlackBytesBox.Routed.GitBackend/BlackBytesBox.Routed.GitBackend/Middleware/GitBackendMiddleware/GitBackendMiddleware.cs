@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System;
 using System.Linq;
+using Microsoft.Extensions.Logging;
 
 namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
 {
@@ -19,6 +20,7 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
     public class GitBackendMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly ILogger<GitBackendMiddleware> _logger;
         private readonly string _repositoryRoot;
         private readonly string _gitHttpBackendPath;
         private readonly string _basePath;
@@ -34,9 +36,10 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
         /// <param name="validateCredentials">
         /// A delegate that receives the repository name, username, and password, and returns true if the credentials are valid for that repo.
         /// </param>
-        public GitBackendMiddleware(RequestDelegate next, string repositoryRoot, string gitHttpBackendPath, string basePath, Func<string, string, string, bool> validateCredentials)
+        public GitBackendMiddleware(RequestDelegate next, ILogger<GitBackendMiddleware> logger, string repositoryRoot, string gitHttpBackendPath, string basePath, Func<string, string, string, bool> validateCredentials)
         {
             _next = next;
+            _logger = logger;
             _repositoryRoot = repositoryRoot;
             _gitHttpBackendPath = gitHttpBackendPath;
             _basePath = basePath?.TrimEnd('/') ?? "";
@@ -183,11 +186,13 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
                 {
                     process.StandardInput.Close();
                 }
+
                 var errorTask = process.StandardError.ReadToEndAsync();
                 var reader = process.StandardOutput;
                 string? line;
                 var headers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                 int statusCode = 200;
+
                 while ((line = await reader.ReadLineAsync()) != null)
                 {
                     if (string.IsNullOrWhiteSpace(line))
@@ -218,7 +223,7 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
                 string stdError = await errorTask;
                 if (!string.IsNullOrWhiteSpace(stdError))
                 {
-                    Console.Error.WriteLine("git-http-backend error: " + stdError);
+                    _logger.LogError("git-http-backend error: " + stdError);
                 }
             }
         }
@@ -260,25 +265,4 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
         }
     }
 
-    /// <summary>
-    /// Extension methods for adding the Git backend middleware to the ASP.NET Core pipeline.
-    /// </summary>
-    public static partial class GitBackendMiddlewareExtensions
-    {
-        /// <summary>
-        /// Adds the Git backend middleware to the pipeline with a custom base path and repository-specific credential validation.
-        /// </summary>
-        /// <param name="builder">The application builder.</param>
-        /// <param name="repositoryRoot">The folder that contains bare Git repositories.</param>
-        /// <param name="gitHttpBackendPath">The full path to git-http-backend.exe.</param>
-        /// <param name="basePath">The URL prefix to match (e.g. "/gitrepos").</param>
-        /// <param name="validateCredentials">
-        /// A delegate to validate the repository name, username, and password.
-        /// </param>
-        /// <returns>The updated application builder.</returns>
-        public static IApplicationBuilder UseGitBackend(this IApplicationBuilder builder, string repositoryRoot, string gitHttpBackendPath, string basePath, Func<string, string, string, bool> validateCredentials)
-        {
-            return builder.UseMiddleware<GitBackendMiddleware>(repositoryRoot, gitHttpBackendPath, basePath, validateCredentials);
-        }
-    }
 }

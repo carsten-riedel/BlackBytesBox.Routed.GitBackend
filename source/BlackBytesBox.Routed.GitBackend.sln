@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackBytesBox.Routed.GitBac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackBytesBox.Routed.GitBackend.Tests", "BlackBytesBox.Routed.GitBackend\BlackBytesBox.Routed.GitBackend.Tests\BlackBytesBox.Routed.GitBackend.Tests.csproj", "{F760B05E-B7EE-3D05-283C-E92D58B3C631}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackBytesBox.Routed.GitBackend.Host", "BlackBytesBox.Routed.GitBackend\BlackBytesBox.Routed.GitBackend.Host\BlackBytesBox.Routed.GitBackend.Host.csproj", "{D2D09298-D430-CB74-2ABF-7EB753597C4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,10 @@ Global
 		{F760B05E-B7EE-3D05-283C-E92D58B3C631}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F760B05E-B7EE-3D05-283C-E92D58B3C631}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F760B05E-B7EE-3D05-283C-E92D58B3C631}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2D09298-D430-CB74-2ABF-7EB753597C4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2D09298-D430-CB74-2ABF-7EB753597C4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2D09298-D430-CB74-2ABF-7EB753597C4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2D09298-D430-CB74-2ABF-7EB753597C4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -35,6 +41,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{10A721C8-9DA1-B754-A744-6DD89AAA5D3F} = {05E8020C-8779-408E-B193-45DD8CD4494D}
 		{F760B05E-B7EE-3D05-283C-E92D58B3C631} = {05E8020C-8779-408E-B193-45DD8CD4494D}
+		{D2D09298-D430-CB74-2ABF-7EB753597C4D} = {05E8020C-8779-408E-B193-45DD8CD4494D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5DD3C65F-D95D-43B5-A21A-B13ED33C3420}

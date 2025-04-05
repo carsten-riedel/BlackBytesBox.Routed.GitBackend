@@ -57,7 +57,7 @@
 		<RepositoryUrl>https://github.com/carsten-riedel/BlackBytesBox.Routed.GitBackend</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<Description>
-			<![CDATA[A collection of configurable middleware filters for ASP.NET Core applications that provide comprehensive request filtering and security features. Includes filters for IP addresses, URLs, HTTP protocols, headers, and user agents with a built-in failure tracking system.]]>
+			<![CDATA[ASP.NET Core middleware exposing Git repositories via git-http-backend.]]>
 		</Description>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -69,9 +69,6 @@
 	<!-- In pack add additional files to the package root directory of the nuget. -->
 	<ItemGroup Condition="'$(Stage)' == 'pack'">
 		<None Include="$(MSBuildProjectDirectory)\AddPackageFiles\**\*" Exclude="$(MSBuildProjectDirectory)\AddPackageFiles\ReleaseNotes.txt" Pack="true" PackagePath="" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Extensions\" />
 	</ItemGroup>
 
 </Project>

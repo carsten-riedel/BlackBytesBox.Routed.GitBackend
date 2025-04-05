@@ -1,0 +1,72 @@
+{
+  "GitCommandRoot": "",
+  "GitCommandFilePath": "",
+  "GitBackendFilePath": "",
+  "GitRepositorysDirectory": "C:\\gitremote",
+  "Accounts": [
+    {
+      "AccountName": "carstenriedel",
+      "Password": "your_password_hash",
+      "PasswordType": "clear",
+      "BasicAuths": [
+        {
+          "Username": "gituser",
+          "Password": "secret",
+          "PasswordType": "clear"
+        }
+      ]
+    },
+    {
+      "AccountName": "account2",
+      "Password": "account2",
+      "PasswordType": "clear",
+      "BasicAuths": [
+        {
+          "Username": "foo",
+          "Password": "faa",
+          "PasswordType": "clear"
+        }
+      ]
+    }
+  ],
+  "AccessRights": [
+    {
+      "OwnerAccountName": "carstenriedel",
+      "Path": "gitrepos/MyProject.git",
+      "AccountNames": [
+        {
+          "AccountName": "carstenriedel",
+          "AccessRight": "ReadWrite"
+        },
+        {
+          "AccountName": "carstenriedel",
+          "AccessRight": "ReadWrite"
+        }
+      ]
+    },
+    {
+      "OwnerAccountName": "carstenriedel",
+      "Path": "gitrepos/MasterProject.git",
+      "AccountNames": [
+        {
+          "AccountName": "carstenriedel",
+          "AccessRight": "Read"
+        }
+      ]
+    },
+    {
+      "OwnerAccountName": "carstenriedel",
+      "Path": "gitrepos/MyProject.git",
+      "AccountNames": [
+        {
+          "AccountName": "carstenriedel",
+          "AccessRight": "ReadWrite"
+        },
+        {
+          "AccountName": "carstenriedel",
+          "AccessRight": "ReadWrite"
+        }
+      ]
+    }
+  ]
+}
