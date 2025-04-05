@@ -46,15 +46,11 @@
     },
     {
       "OwnerAccountName": "carstenriedel",
-      "Path": "gitrepos/MyProject.git",
+      "Path": "gitrepos/MasterProject.git",
       "AccountNames": [
         {
           "AccountName": "carstenriedel",
-          "AccessRight": "ReadWrite"
-        },
-        {
-          "AccountName": "carstenriedel",
-          "AccessRight": "ReadWrite"
+          "AccessRight": "Read"
         }
       ]
     },
