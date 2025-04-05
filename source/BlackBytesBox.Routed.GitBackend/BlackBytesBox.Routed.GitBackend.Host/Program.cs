@@ -22,7 +22,7 @@ namespace BlackBytesBox.Routed.GitBackend.Host
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddBackendSettings(@"BackendSettings.json");
+            builder.Services.AddBackendSettings2(@"BackendSettings.json");
 
             var app = builder.Build();
 

@@ -45,7 +45,7 @@ namespace BlackBytesBox.Routed.GitBackend.Tests
             //var result2 = ProcessUtility.ExecuteProcess(@"git", @$"-C ""C:\gitremote\MyProject.git"" config http.receivepack true", "");
 
 
-            builder.Services.AddBackendSettings("BackendSettings.json");
+            builder.Services.AddBackendSettings2("BackendSettings.json");
 
             // Build the application.
             app = builder.Build();
