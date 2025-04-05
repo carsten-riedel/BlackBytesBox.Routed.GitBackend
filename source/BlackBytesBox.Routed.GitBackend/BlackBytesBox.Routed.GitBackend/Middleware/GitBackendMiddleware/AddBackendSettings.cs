@@ -12,7 +12,7 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
 
     public static partial class IServiceCollectionExtensions
     {
-        public static IServiceCollection AddBackendSettings(this IServiceCollection services,string filePath, Action<BackendSettings>? manualConfigure = null)
+        public static IServiceCollection   AddBackendSettings(this IServiceCollection services,string filePath, Action<BackendSettings>? manualConfigure = null)
         {
             filePath = Path.GetFullPath(filePath,AppContext.BaseDirectory);
             var backendSettings = new DynamicSettingsService<BackendSettings>(filePath);

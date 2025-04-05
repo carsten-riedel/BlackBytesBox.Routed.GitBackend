@@ -175,33 +175,92 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
                 return;
             }
 
-            var allowedAccounts = settings.AccessRights.Where(e => e.Path.Equals(gitRepoPath, StringComparison.OrdinalIgnoreCase)).SelectMany(e=>e.AccountNames).ToList();
-            var allowedBasicAuthAccounts = settings.Accounts.Where(e => allowedAccounts.Contains(e.AccountName)).SelectMany(e => e.BasicAuths).ToList();
+            List<AccessUsersRight> allowedAccounts = settings.AccessRights.Where(e => e.Path.Equals(gitRepoPath, StringComparison.OrdinalIgnoreCase)).SelectMany(e=>e.AccountNames).ToList();
 
-            bool allowed = false;
+            // Build a strongly typed list of merged info
+            List<MergedBasicAuth> allowedBasicAuthAccounts = settings.Accounts
+                // Join on matching account names
+                .Join(allowedAccounts,
+                      account => account.AccountName,
+                      access => access.AccountName,
+                      (account, access) => new { Account = account, Access = access })
+                // For each joined pair, associate all BasicAuth records with their AccessRight
+                .SelectMany(x => x.Account.BasicAuths
+                    .Select(ba => new MergedBasicAuth
+                    {
+                        AccountName = x.Account.AccountName,
+                        AccessRight = x.Access.AccessRight,
+                        BasicAuth = ba
+                    })
+                )
+                .ToList();
+
+
+            MergedBasicAuth? allowed = null;
             foreach (var item in allowedBasicAuthAccounts)
             {
-                if (item.Username.Equals(basicAuthCheckResult.Username))
+                if (item.BasicAuth.Username.Equals(basicAuthCheckResult.Username))
                 {
-                    var settingsPw = item.Password;
+                    var settingsPw = item.BasicAuth.Password;
                     var authPw = basicAuthCheckResult.Password;
 
-                    if (item.PasswordType == "SHA1")
+                    if (item.BasicAuth.PasswordType == "SHA1")
                     {
-                        settingsPw = string.Concat(System.Security.Cryptography.SHA1.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(settingsPw)).Select(b => b.ToString("x2")));
                         authPw = string.Concat(System.Security.Cryptography.SHA1.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(authPw)).Select(b => b.ToString("x2")));
                     }
 
                     if (settingsPw.Equals(authPw))
                     {
-                        allowed = true;
+                        allowed = item;
+                        break;
                     }
                 }
             }
 
-            if (!allowed)
+            if (allowed is null)
             {
                 await WriteUnauthorizedResponseAsync(context, "Unauthorized: Invalid credentials.", false);
+                return;
+            }
+
+            if (context.Request.QueryString.Value is null)
+            {
+                await WriteUnauthorizedResponseAsync(context, "Unauthorized: No query string.", false);
+                return;
+            }
+
+            bool isRepoRead = false;
+            bool isRepoWrite = false;
+            bool isAccessReadWrite = allowed.AccessRight.Equals("ReadWrite", StringComparison.OrdinalIgnoreCase); ;
+            bool isAccessRead = allowed.AccessRight.Equals("Read", StringComparison.OrdinalIgnoreCase); ;
+
+            if (context.Request.QueryString.Value is not null && context.Request.Method == "GET")
+            {
+
+                isRepoWrite = context.Request.QueryString.Value.Contains("git-receive-pack");
+                isRepoRead = context.Request.QueryString.Value.Contains("git-upload-pack");
+            }
+            else if (context.Request.ContentType is not null  && context.Request.Method == "POST")
+            {
+                isRepoWrite = context.Request.ContentType.Contains("git-receive-pack");
+                isRepoRead = context.Request.ContentType.Contains("git-upload-pack");
+            }
+
+            bool repoActionAllowed = false;
+            if (isAccessRead && isRepoRead)
+            {
+                repoActionAllowed = true;
+            }
+
+            if (isAccessReadWrite && (isRepoRead || isRepoWrite))
+            {
+                repoActionAllowed = true;
+            }
+
+
+            if (!repoActionAllowed)
+            {
+                await WriteUnauthorizedResponseAsync(context, "Unauthorized: Upload denyied", false);
                 return;
             }
 

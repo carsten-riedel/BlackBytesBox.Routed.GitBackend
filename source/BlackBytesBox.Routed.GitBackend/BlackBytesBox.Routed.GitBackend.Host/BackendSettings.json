@@ -31,57 +31,41 @@
   ],
   "AccessRights": [
     {
+      "OwnerAccountName": "carstenriedel",
       "Path": "gitrepos/MyProject.git",
       "AccountNames": [
-        "carstenriedel"
+        {
+          "AccountName": "carstenriedel",
+          "AccessRight": "ReadWrite"
+        },
+        {
+          "AccountName": "carstenriedel",
+          "AccessRight": "ReadWrite"
+        }
       ]
     },
     {
+      "OwnerAccountName": "carstenriedel",
       "Path": "gitrepos/MasterProject.git",
       "AccountNames": [
-        "carstenriedel"
+        {
+          "AccountName": "carstenriedel",
+          "AccessRight": "Read"
+        }
       ]
     },
     {
-      "Path": "gitrepos/MasteraProject.git",
+      "OwnerAccountName": "carstenriedel",
+      "Path": "gitrepos/MyProject.git",
       "AccountNames": [
-        "carstenriedel"
-      ]
-    },
-    {
-      "Path": "gitrepos/aMasteraProject.git",
-      "AccountNames": [
-        "carstenriedel"
-      ]
-    },
-    {
-      "Path": "gitrepos/bMasteraProject.git",
-      "AccountNames": [
-        "carstenriedel"
-      ]
-    },
-    {
-      "Path": "gitrepos/cMasteraProject.git",
-      "AccountNames": [
-        "carstenriedel"
-      ]
-    },
-    {
-      "Path": "gitrepos/dMasteraProject.git",
-      "AccountNames": [
-        "carstenriedel"
-      ]
-    },
-    {
-      "Path": "gitrepos/eMasteraProject.git",
-      "AccountNames": [
-        "carstenriedel"
-      ]
-    },
-    {
-      "Path": "gitrepos/fMasteraProject.git",
-      "AccountNames": [
-        "carstenriedel"
+        {
+          "AccountName": "carstenriedel",
+          "AccessRight": "ReadWrite"
+        },
+        {
+          "AccountName": "carstenriedel",
+          "AccessRight": "ReadWrite"
+        }
       ]
     }
   ]

@@ -75,12 +75,34 @@ namespace BlackBytesBox.Routed.GitBackend.Middleware.GitBackendMiddleware
         /// <summary>
         /// Gets or sets the repository path.
         /// </summary>
+        public string OwnerAccountName { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Gets or sets the repository path.
+        /// </summary>
         public string Path { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the list of account names allowed to access the repository.
         /// </summary>
-        public List<string> AccountNames { get; set; } = new List<string>();
+        public List<AccessUsersRight> AccountNames { get; set; } = new List<AccessUsersRight>();
     }
 
+    public class AccessUsersRight
+    {
+        /// <summary>
+        /// Gets or sets the repository path.
+        /// </summary>
+        public string AccountName { get; set; } = string.Empty;
+
+        public string AccessRight { get; set; } = string.Empty;
+
+    }
+
+    public class MergedBasicAuth
+    {
+        public string AccountName { get; set; } = string.Empty;
+        public string AccessRight { get; set; } = string.Empty;
+        public BasicAuth BasicAuth { get; set; } = new BasicAuth();
+    }
 }
